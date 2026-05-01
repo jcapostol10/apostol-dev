@@ -1,11 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0a0a0a;
-  --color-paper: #fafaf9;
-  --color-accent: #f97316;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --color-paper: #f5f1e8;
+  --color-paper-tint: #ebe5d6;
+  --color-ink: #18130d;
+  --color-ink-soft: #4a4036;
+  --color-ink-muted: #847868;
+  --color-rule: #d8cfbb;
+  --color-accent: #b04a25;
+  --color-accent-deep: #6b2a14;
+  --font-display: var(--font-instrument-serif), 'Times New Roman', serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 html {
@@ -13,49 +19,128 @@ html {
 }
 
 body {
-  background: #0a0a0a;
-  color: #fafaf9;
+  background: #f5f1e8;
+  color: #18130d;
   font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.grain {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 3px 3px;
+/* Paper grain — subtle warm texture */
+.paper-grain {
+  position: relative;
 }
-
-.gradient-text {
-  background: linear-gradient(135deg, #fafaf9 0%, #f97316 50%, #fafaf9 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-shift 8s ease-in-out infinite;
-}
-
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.glow {
-  box-shadow: 0 0 80px -20px rgba(249, 115, 22, 0.4);
-}
-
-.card-border {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 200ms;
-}
-
-.card-border:hover {
-  border-color: rgba(249, 115, 22, 0.4);
-}
-
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
+.paper-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(110, 80, 50, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(110, 80, 50, 0.03) 0%, transparent 50%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0, rgba(50, 30, 10, 0.015) 1px, transparent 2px);
+}
+
+/* Display heading – tight, italic-anchored editorial */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.94;
+}
+.display em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+/* Caption / eyebrow type */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* Drop-cap for editorial paragraphs */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 4.5rem;
+  line-height: 0.85;
+  float: left;
+  padding: 0.35rem 0.6rem 0 0;
+  color: var(--color-accent);
+}
+
+/* Hairline rules */
+.rule {
+  border: 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+/* Editorial number marker */
+.numeral {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+/* Underline link */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 250ms ease;
+}
+.link-underline:hover {
+  background-size: 0 1px;
+  background-position: 100% 100%;
+}
+
+/* Card with hairline border (no rounded boxes) */
+.editorial-card {
+  border-top: 1px solid var(--color-rule);
+  padding-top: 1.5rem;
+}
+
+/* Reveal on load */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  animation: rise 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.rise-1 { animation-delay: 100ms; }
+.rise-2 { animation-delay: 220ms; }
+.rise-3 { animation-delay: 340ms; }
+.rise-4 { animation-delay: 460ms; }
+.rise-5 { animation-delay: 580ms; }
+
+/* Marquee strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }

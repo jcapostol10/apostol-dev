@@ -1,15 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const display = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const sans = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const mono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#f5f1e8",
 };
 
 export default function RootLayout({
@@ -42,9 +50,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="paper-grain min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
