@@ -521,7 +521,10 @@ function Orbital() {
         ))}
 
         <div className="orbital-halo" aria-hidden />
-        <div className="orbital-core" aria-hidden />
+        <div className="orbital-sphere" aria-hidden>
+          <div className="orbital-corona" />
+          <div className="orbital-core" />
+        </div>
       </div>
     </div>
   );

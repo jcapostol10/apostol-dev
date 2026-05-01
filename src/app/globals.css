@@ -432,7 +432,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 2px;
+  border-radius: 6px;
   border: 1px solid rgba(255, 106, 61, 0.14);
 }
 
@@ -521,39 +521,55 @@ body {
   }
 }
 
-.orbital-core {
+/* Sphere wrapper sits in the scene and follows drift, but the inner
+   core counter-rotates exactly to cancel the scene's rotateX so the
+   sphere always presents as a perfect circle to the viewer. */
+.orbital-sphere {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 16%;
-  height: 16%;
-  margin: -8% 0 0 -8%;
-  border-radius: 50%;
-  /* Counter-rotate the disc tilt so the sphere stays circular from POV.
-     The sphere is also lifted above the disc plane via translateZ. */
-  transform: translateZ(40px) rotateX(-62deg);
-  background:
-    /* specular pinpoint */
-    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 14%),
-    /* warm key light */
-    radial-gradient(circle at 32% 28%, #ffe6c2 0%, #ffb86b 22%, #ff8a4d 48%, #ff5e1f 70%, #b13310 100%);
-  box-shadow:
-    inset -8px -10px 18px rgba(0, 0, 0, 0.55),
-    inset 4px 5px 10px rgba(255, 230, 200, 0.25),
-    0 0 60px rgba(255, 106, 61, 0.7),
-    0 0 140px rgba(255, 106, 61, 0.35);
-}
-.orbital-core::after {
-  /* soft second specular */
-  content: "";
-  position: absolute;
-  top: 12%;
-  left: 18%;
-  width: 24%;
+  width: 18%;
   height: 18%;
+  margin: -9% 0 0 -9%;
+  transform-style: preserve-3d;
+  transform: translateZ(48px);
+}
+
+.orbital-core {
+  position: absolute;
+  inset: 0;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.55) 0%, transparent 70%);
-  filter: blur(2px);
+  /* Counter-cancel the scene's rotateX (animated to match orb-drift). */
+  animation: orb-core-cancel 18s ease-in-out infinite;
+  background:
+    /* fine specular pinpoint */
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 9%),
+    /* secondary blurred specular */
+    radial-gradient(ellipse 32% 22% at 28% 26%, rgba(255, 255, 255, 0.55) 0%, transparent 70%),
+    /* warm key light */
+    radial-gradient(circle at 34% 30%, #ffeacc 0%, #ffc28a 18%, #ff9258 38%, #ff6a3d 58%, #c84418 82%, #7a2509 100%);
+  box-shadow:
+    inset -10px -12px 24px rgba(0, 0, 0, 0.6),
+    inset 3px 4px 8px rgba(255, 230, 200, 0.18),
+    0 0 70px rgba(255, 106, 61, 0.7),
+    0 0 160px rgba(255, 106, 61, 0.35);
+}
+
+@keyframes orb-core-cancel {
+  0%   { transform: rotateX(-64deg) rotateZ(14deg); }
+  25%  { transform: rotateX(-60deg) rotateZ(10deg); }
+  50%  { transform: rotateX(-58deg) rotateZ(8deg); }
+  75%  { transform: rotateX(-62deg) rotateZ(12deg); }
+  100% { transform: rotateX(-64deg) rotateZ(14deg); }
+}
+
+/* Atmospheric corona around the sphere */
+.orbital-corona {
+  position: absolute;
+  inset: -40%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 138, 77, 0.18) 0%, rgba(255, 106, 61, 0.06) 35%, transparent 65%);
   pointer-events: none;
 }
 
@@ -589,10 +605,14 @@ body {
   .orbital-ring.mid,
   .orbital-ring.inner,
   .orbital-halo,
-  .orbital-scene {
+  .orbital-scene,
+  .orbital-core {
     animation: none;
   }
   .orbital-scene {
     transform: rotateX(62deg) rotateZ(-12deg);
+  }
+  .orbital-core {
+    transform: rotateX(-62deg) rotateZ(12deg);
   }
 }
