@@ -387,7 +387,15 @@ body {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  transform: rotateX(62deg) rotateZ(-12deg);
+  animation: orb-drift 18s ease-in-out infinite;
+}
+
+@keyframes orb-drift {
+  0%   { transform: rotateX(64deg) rotateZ(-14deg) translate3d(0, 0, 0); }
+  25%  { transform: rotateX(60deg) rotateZ(-10deg) translate3d(0, -1.5%, 22px); }
+  50%  { transform: rotateX(58deg) rotateZ(-8deg)  translate3d(0,  0%,   0); }
+  75%  { transform: rotateX(62deg) rotateZ(-12deg) translate3d(0,  1.5%, -22px); }
+  100% { transform: rotateX(64deg) rotateZ(-14deg) translate3d(0, 0, 0); }
 }
 
 .orbital-ring {
@@ -507,7 +515,11 @@ body {
   .orbital-ring.outer,
   .orbital-ring.mid,
   .orbital-ring.inner,
-  .orbital-halo {
+  .orbital-halo,
+  .orbital-scene {
     animation: none;
+  }
+  .orbital-scene {
+    transform: rotateX(62deg) rotateZ(-12deg);
   }
 }

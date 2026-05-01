@@ -155,7 +155,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-7">
               <h1 className="display text-warm-wash text-[12.5vw] sm:text-[9vw] lg:text-[7.4vw] xl:text-[112px] mb-8 rise rise-2">
                 Websites &amp; mobile apps that grow Philippine businesses<span className="text-accent" style={{ WebkitTextFillColor: "currentColor" }}>.</span>
               </h1>
@@ -182,8 +182,10 @@ export default function HomePage() {
             </div>
 
             {/* ORBITAL */}
-            <aside className="lg:col-span-4 rise rise-4 hidden lg:block">
-              <Orbital />
+            <aside className="lg:col-span-5 rise rise-4 hidden lg:block">
+              <div className="relative lg:scale-[1.18] lg:-mr-10 xl:-mr-16 origin-center">
+                <Orbital />
+              </div>
             </aside>
           </div>
         </div>
