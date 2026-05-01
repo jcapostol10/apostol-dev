@@ -117,10 +117,8 @@ export default function HomePage() {
             <span className="text-paper-soft">3 spots open · May 2026</span>
           </div>
 
-          <h1 className="display text-[14vw] md:text-[10.5vw] lg:text-[140px] mb-10 max-w-6xl">
-            <span className="rise rise-2 inline-block">Websites &amp; mobile apps</span>{" "}
-            <span className="rise rise-3 inline-block">that <span className="text-sunset">grow</span> Philippine</span>{" "}
-            <span className="rise rise-4 inline-block">businesses<span className="text-accent">.</span></span>
+          <h1 className="display text-warm-wash rise rise-2 text-[14vw] md:text-[10.5vw] lg:text-[140px] mb-10 max-w-6xl">
+            Websites &amp; mobile apps that grow Philippine businesses<span className="text-accent" style={{ WebkitTextFillColor: "currentColor" }}>.</span>
           </h1>
 
           <div className="grid md:grid-cols-12 gap-6 md:gap-12 items-end mb-20">

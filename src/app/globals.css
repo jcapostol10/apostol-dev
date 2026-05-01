@@ -97,9 +97,9 @@ body {
   color: var(--color-paper-mute);
 }
 
-/* Sunset gradient text */
+/* Sunset gradient text — for short inline emphasis */
 .text-sunset {
-  background: linear-gradient(100deg, #ffb86b 0%, #ff7a3d 38%, #c04a18 70%, #ff7a3d 100%);
+  background: linear-gradient(100deg, #ffb86b 0%, #ff7a3d 50%, #c04a18 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -109,6 +109,21 @@ body {
 @keyframes sunset-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+/* Vertical sunset wash — for big headlines so the warmth integrates */
+.text-warm-wash {
+  background: linear-gradient(180deg,
+    #f5ede0 0%,
+    #f5ede0 38%,
+    #ffd9a8 60%,
+    #ff924d 85%,
+    #ff5e1f 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* Hand-drawn squiggle underline */
