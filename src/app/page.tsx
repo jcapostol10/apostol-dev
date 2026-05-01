@@ -477,12 +477,42 @@ function Metric({ label, value, hint }: { label: string; value: string; hint: st
 function Orbital() {
   // Three concentric rings of segments + halo + glowing core.
   // Pure CSS 3D, no canvas. Inspired by orbital / atomic compositions.
-  // Each ring: radius (cqi), count, arc width, radial thickness, depth (3D),
-  // and a presence pattern so the ring isn't a uniform crown.
-  const rings = [
-    { cls: "outer", radius: 44, count: 14, arc: 72, thick: 26, depth: 36, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const },
-    { cls: "mid",   radius: 30, count: 10, arc: 54, thick: 20, depth: 28, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const },
-    { cls: "inner", radius: 18, count: 8,  arc: 36, thick: 14, depth: 20, jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const },
+  // Variety of "techy" shape kinds. Each segment in the rings picks a kind,
+  // so the orbit reads as machined/circuit-like fragments rather than a
+  // uniform crown of identical tiles.
+  type Kind = "slab" | "post" | "cube" | "pillar" | "fin" | "block" | "chip";
+  const shapes: Record<Kind, { w: number; h: number; d: number }> = {
+    slab:   { w: 86, h: 28, d: 18 }, // wide low circuit plate
+    post:   { w: 14, h: 14, d: 64 }, // tall thin antenna
+    cube:   { w: 30, h: 30, d: 28 }, // component cube
+    pillar: { w: 22, h: 22, d: 52 }, // upright pillar
+    fin:    { w: 10, h: 56, d: 38 }, // thin radial fin
+    block:  { w: 50, h: 32, d: 26 }, // wide medium block
+    chip:   { w: 38, h: 18, d: 12 }, // shallow flat chip
+  };
+
+  const rings: { cls: string; radius: number; count: number; kinds: Kind[]; jitter: readonly number[] }[] = [
+    {
+      cls: "outer",
+      radius: 44,
+      count: 14,
+      kinds: ["slab", "post", "block", "fin", "slab", "pillar", "post", "block", "slab", "fin", "pillar", "slab", "post", "block"],
+      jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const,
+    },
+    {
+      cls: "mid",
+      radius: 28,
+      count: 10,
+      kinds: ["cube", "post", "chip", "pillar", "post", "cube", "chip", "fin", "cube", "post"],
+      jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const,
+    },
+    {
+      cls: "inner",
+      radius: 16,
+      count: 8,
+      kinds: ["chip", "cube", "post", "chip", "fin", "post", "chip", "cube"],
+      jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const,
+    },
   ];
 
   return (
@@ -497,16 +527,18 @@ function Orbital() {
             {Array.from({ length: r.count }).map((_, i) => {
               if (!r.jitter[i % r.jitter.length]) return null;
               const angle = (360 / r.count) * i;
+              const kind = r.kinds[i % r.kinds.length];
+              const { w, h, d } = shapes[kind];
               return (
                 <span
                   key={i}
-                  className="orbital-seg"
+                  className={`orbital-seg seg-${kind}`}
                   style={{
                     ["--a" as string]: `${angle}deg`,
                     ["--r" as string]: `${r.radius}cqi`,
-                    ["--w" as string]: `${r.arc}px`,
-                    ["--h" as string]: `${r.thick}px`,
-                    ["--d" as string]: `${r.depth}px`,
+                    ["--w" as string]: `${w}px`,
+                    ["--h" as string]: `${h}px`,
+                    ["--d" as string]: `${d}px`,
                   }}
                 >
                   <span className="face face-top" />
