@@ -103,8 +103,6 @@ const stack = [
   "UST Engineering",
 ];
 
-const previously = ["Nuskin", "Macquarie", "Swapoolabs", "Navitaire-Accenture"];
-
 export default function HomePage() {
   return (
     <>
@@ -170,15 +168,6 @@ export default function HomePage() {
                 <a href="#pricing" className="btn btn-ghost">See pricing</a>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-text-3 rise rise-5">
-                <span className="eyebrow">Previously</span>
-                {previously.map((p, i) => (
-                  <span key={p} className="flex items-center gap-3">
-                    <span className="text-text-2 font-medium">{p}</span>
-                    {i < previously.length - 1 && <span className="text-rule">·</span>}
-                  </span>
-                ))}
-              </div>
             </div>
 
             {/* ORBITAL */}
