@@ -371,3 +371,143 @@ body {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* ─── Orbital animation ───────────────────────────────────────── */
+
+.orbital {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  perspective: 1400px;
+  perspective-origin: 50% 38%;
+  container-type: inline-size;
+}
+
+.orbital-scene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(62deg) rotateZ(-12deg);
+}
+
+.orbital-ring {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+.orbital-ring.outer { animation: orb-spin 32s linear infinite; }
+.orbital-ring.mid   { animation: orb-spin-rev 22s linear infinite; }
+.orbital-ring.inner { animation: orb-spin 14s linear infinite; }
+
+@keyframes orb-spin {
+  from { transform: rotateZ(0); }
+  to   { transform: rotateZ(360deg); }
+}
+@keyframes orb-spin-rev {
+  from { transform: rotateZ(0); }
+  to   { transform: rotateZ(-360deg); }
+}
+
+.orbital-seg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 50% 50%;
+  transform: translate(-50%, -50%) rotateZ(var(--a)) translateY(calc(-1 * var(--r)));
+  border-radius: 4px;
+  background:
+    linear-gradient(120deg,
+      rgba(255, 106, 61, 0.06) 0%,
+      rgba(60, 50, 42, 0.95) 25%,
+      rgba(38, 32, 28, 0.95) 60%,
+      rgba(28, 24, 20, 0.95) 100%);
+  border: 1px solid rgba(255, 106, 61, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 184, 107, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.orbital-seg::after {
+  /* sheen */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(140deg, rgba(255, 184, 107, 0.18) 0%, transparent 28%, transparent 72%, rgba(255, 106, 61, 0.08) 100%);
+  pointer-events: none;
+}
+
+.orbital-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26%;
+  height: 26%;
+  margin: -13% 0 0 -13%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 106, 61, 0.85);
+  box-shadow:
+    0 0 30px rgba(255, 106, 61, 0.55),
+    inset 0 0 22px rgba(255, 106, 61, 0.4);
+  animation: orb-pulse 3.4s ease-in-out infinite;
+}
+@keyframes orb-pulse {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(255, 106, 61, 0.45), inset 0 0 16px rgba(255, 106, 61, 0.32);
+    border-color: rgba(255, 106, 61, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(255, 106, 61, 0.7), inset 0 0 30px rgba(255, 106, 61, 0.5);
+    border-color: rgba(255, 184, 107, 1);
+  }
+}
+
+.orbital-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9%;
+  height: 9%;
+  margin: -4.5% 0 0 -4.5%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #ffe5c4 0%, #ffb86b 38%, #ff6a3d 70%, #c34317 100%);
+  box-shadow:
+    0 0 40px rgba(255, 106, 61, 0.85),
+    0 0 100px rgba(255, 106, 61, 0.45);
+}
+
+/* Faint orbit guide-rings (etched lines) */
+.orbital-trail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 106, 61, 0.12);
+}
+.orbital-trail.t1 { width: 44%;  height: 44%;  margin: -22% 0 0 -22%; }
+.orbital-trail.t2 { width: 70%;  height: 70%;  margin: -35% 0 0 -35%; }
+.orbital-trail.t3 { width: 96%;  height: 96%;  margin: -48% 0 0 -48%; }
+
+/* Soft floor glow under the orbit */
+.orbital::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 8%;
+  height: 24%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 106, 61, 0.22) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbital-ring.outer,
+  .orbital-ring.mid,
+  .orbital-ring.inner,
+  .orbital-halo {
+    animation: none;
+  }
+}

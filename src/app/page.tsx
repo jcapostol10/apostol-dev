@@ -154,7 +154,7 @@ export default function HomePage() {
             <span className="hidden sm:inline">Now accepting 3 clients</span>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-8">
               <h1 className="display text-warm-wash text-[12.5vw] sm:text-[9vw] lg:text-[7.4vw] xl:text-[112px] mb-8 rise rise-2">
                 Websites &amp; mobile apps that grow Philippine businesses<span className="text-accent" style={{ WebkitTextFillColor: "currentColor" }}>.</span>
@@ -181,26 +181,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* MONITORING PANEL */}
-            <aside className="lg:col-span-4 rise rise-4">
-              <div className="surface-flush p-5">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="eyebrow !text-text-2">apostol.dev / status</span>
-                  <span className="flex items-center gap-2 text-xs text-success font-mono">
-                    <span className="pill-dot" /> healthy
-                  </span>
-                </div>
-                <Sparkline />
-                <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
-                  <Metric label="P95 LATENCY" value="1.42s" hint="↓ 0.18s vs last wk" />
-                  <Metric label="UPTIME 30d" value="99.97%" hint="3 incidents resolved" />
-                  <Metric label="DEPLOYS / MO" value="14" hint="avg 2m 14s" />
-                  <Metric label="LIGHTHOUSE" value="98 / 100" hint="mobile · throttled" />
-                </div>
-                <div className="mt-4 pt-4 border-t border-rule text-xs text-text-3 font-mono">
-                  $ last deploy <span className="text-text-2">2h 14m ago</span>
-                </div>
-              </div>
+            {/* ORBITAL */}
+            <aside className="lg:col-span-4 rise rise-4 hidden lg:block">
+              <Orbital />
             </aside>
           </div>
         </div>
@@ -485,6 +468,52 @@ function Metric({ label, value, hint }: { label: string; value: string; hint: st
       <div className="eyebrow !text-text-3 mb-1">{label}</div>
       <div className="font-mono text-text-1 numeric font-semibold">{value}</div>
       <div className="text-[11px] text-text-3 mt-0.5">{hint}</div>
+    </div>
+  );
+}
+
+function Orbital() {
+  // Three concentric rings of segments + halo + glowing core.
+  // Pure CSS 3D, no canvas. Inspired by orbital / atomic compositions.
+  // Each ring: radius (cqi units), segment count, arc width, radial thickness,
+  // and a presence pattern so the ring isn't a uniform crown.
+  const rings = [
+    { cls: "outer", radius: 44, count: 14, arc: 72, thick: 26, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const },
+    { cls: "mid",   radius: 30, count: 10, arc: 54, thick: 20, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const },
+    { cls: "inner", radius: 18, count: 8,  arc: 36, thick: 14, jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const },
+  ];
+
+  return (
+    <div className="orbital">
+      <div className="orbital-trail t3" aria-hidden />
+      <div className="orbital-trail t2" aria-hidden />
+      <div className="orbital-trail t1" aria-hidden />
+
+      <div className="orbital-scene" aria-hidden>
+        {rings.map((r) => (
+          <div key={r.cls} className={`orbital-ring ${r.cls}`}>
+            {Array.from({ length: r.count }).map((_, i) => {
+              if (!r.jitter[i % r.jitter.length]) return null;
+              const angle = (360 / r.count) * i;
+              return (
+                <span
+                  key={i}
+                  className="orbital-seg"
+                  style={{
+                    width: `${r.arc}px`,
+                    height: `${r.thick}px`,
+                    ["--a" as string]: `${angle}deg`,
+                    ["--r" as string]: `${r.radius}cqi`,
+                  }}
+                />
+              );
+            })}
+          </div>
+        ))}
+
+        <div className="orbital-halo" aria-hidden />
+        <div className="orbital-core" aria-hidden />
+      </div>
     </div>
   );
 }
