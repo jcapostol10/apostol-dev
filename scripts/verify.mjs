@@ -11,7 +11,7 @@ const viewports = [
   { name: "mobile", width: 390, height: 844 },
 ];
 
-const sectionIds = ["services", "why", "pricing", "process", "contact"];
+const sectionIds = ["services", "bio", "pricing", "process", "faq", "contact"];
 
 async function run() {
   await mkdir(OUT, { recursive: true });
