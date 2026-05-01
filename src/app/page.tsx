@@ -121,7 +121,7 @@ export default function HomePage() {
           </nav>
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-paper text-sm font-medium hover:bg-accent transition-colors"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-paper text-sm font-medium hover:bg-accent-deep transition-colors"
           >
             Start a project
             <span aria-hidden>→</span>
@@ -165,14 +165,14 @@ export default function HomePage() {
                 <div className="md:col-span-5 flex flex-col sm:flex-row gap-3 rise rise-4">
                   <a
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-ink text-paper font-medium hover:bg-accent transition-colors"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-accent text-paper font-medium hover:bg-accent-deep transition-colors"
                   >
                     Start a project
                     <span aria-hidden>→</span>
                   </a>
                   <a
                     href="#pricing"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-ink text-ink hover:bg-ink hover:text-paper transition-colors"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-ink/40 text-ink hover:border-accent hover:text-accent transition-colors"
                   >
                     See rates
                   </a>
@@ -319,9 +319,9 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-px bg-rule border border-rule max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {/* Subscription */}
-            <article className="bg-paper p-10 md:p-12">
+            <article className="border border-rule p-10 md:p-12">
               <div className="eyebrow mb-6">Subscription</div>
               <h3 className="display text-4xl mb-4">Website Subscription</h3>
               <div className="flex items-baseline gap-2 mb-3">
@@ -346,26 +346,26 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="block w-full text-center px-6 py-4 border border-ink hover:bg-ink hover:text-paper transition-colors font-medium">
+              <a href="#contact" className="block w-full text-center px-6 py-4 border border-ink/40 text-ink hover:border-accent hover:text-accent transition-colors font-medium">
                 Get started
               </a>
             </article>
 
             {/* Retainer */}
-            <article className="bg-ink text-paper p-10 md:p-12 relative">
-              <div className="absolute top-0 right-0 px-4 py-1 bg-accent text-paper eyebrow">
+            <article className="border border-accent p-10 md:p-12 relative bg-gradient-to-br from-accent/[0.06] to-transparent">
+              <div className="absolute -top-px right-8 px-4 py-1 bg-accent text-paper eyebrow">
                 Most popular
               </div>
               <div className="eyebrow text-accent mb-6">Retainer &amp; Support</div>
               <h3 className="display text-4xl mb-4">Growth Partner</h3>
               <div className="flex items-baseline gap-2 mb-3">
                 <span className="display text-7xl">₱5,000</span>
-                <span className="eyebrow !text-paper/60">/ month</span>
+                <span className="eyebrow">/ month</span>
               </div>
-              <p className="text-paper/70 mb-8 max-w-[40ch]">
+              <p className="text-ink-soft mb-8 max-w-[40ch]">
                 For businesses that want their website to actively grow revenue.
               </p>
-              <ul className="space-y-3 mb-10 text-paper/80">
+              <ul className="space-y-3 mb-10 text-ink-soft">
                 {[
                   "Everything in Subscription",
                   "Priority support — same-day response",
@@ -405,7 +405,7 @@ export default function HomePage() {
 
           <ol className="grid md:grid-cols-4 gap-x-10 gap-y-12">
             {processSteps.map((s) => (
-              <li key={s.n} className="border-t border-ink pt-5">
+              <li key={s.n} className="border-t border-ink/30 pt-5">
                 <div className="numeral text-6xl leading-none mb-4">{s.n}</div>
                 <h3 className="display text-2xl mb-2">{s.title}</h3>
                 <p className="text-ink-soft text-sm leading-relaxed">{s.body}</p>
@@ -428,7 +428,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="border-t border-ink">
+          <div className="border-t border-ink/30">
             {faqs.map((f) => (
               <details key={f.q} className="group border-b border-rule">
                 <summary className="flex justify-between items-baseline cursor-pointer list-none py-5 gap-6">
@@ -470,34 +470,34 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative z-10 border-t border-ink bg-ink text-paper">
+      <footer className="relative z-10 border-t border-rule bg-paper-tint">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-16">
           <div className="grid md:grid-cols-12 gap-8 mb-12">
             <div className="md:col-span-6">
               <div className="display text-6xl md:text-8xl">
                 Apostol<em className="text-accent">.dev</em>
               </div>
-              <p className="mt-4 text-paper/60 max-w-md">
+              <p className="mt-4 text-ink-soft max-w-md">
                 A studio practice. Engineered websites and mobile apps for Philippine businesses.
               </p>
             </div>
             <div className="md:col-span-3">
-              <p className="eyebrow !text-paper/50 mb-4">Studio</p>
-              <ul className="space-y-2 text-paper/80">
+              <p className="eyebrow mb-4">Studio</p>
+              <ul className="space-y-2 text-ink-soft">
                 <li><a href="#services" className="link-underline">Services</a></li>
                 <li><a href="#pricing" className="link-underline">Rates</a></li>
                 <li><a href="#process" className="link-underline">Process</a></li>
               </ul>
             </div>
             <div className="md:col-span-3">
-              <p className="eyebrow !text-paper/50 mb-4">Correspondence</p>
-              <ul className="space-y-2 text-paper/80">
+              <p className="eyebrow mb-4">Correspondence</p>
+              <ul className="space-y-2 text-ink-soft">
                 <li><a href="mailto:josecarlo.apostol@gmail.com" className="link-underline">Email</a></li>
                 <li><a href="https://wa.me/639178129809" className="link-underline">WhatsApp</a></li>
               </ul>
             </div>
           </div>
-          <div className="pt-6 border-t border-paper/10 flex flex-col md:flex-row justify-between gap-3 eyebrow !text-paper/50">
+          <div className="pt-6 border-t border-rule flex flex-col md:flex-row justify-between gap-3 eyebrow">
             <span>© 2026 Jose Carlo Apostol</span>
             <span>Set in Instrument Serif &amp; Geist · Built in the Philippines</span>
           </div>

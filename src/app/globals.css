@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f5f1e8;
-  --color-paper-tint: #ebe5d6;
-  --color-ink: #18130d;
-  --color-ink-soft: #4a4036;
-  --color-ink-muted: #847868;
-  --color-rule: #d8cfbb;
-  --color-accent: #b04a25;
-  --color-accent-deep: #6b2a14;
+  --color-paper: #0b0907;
+  --color-paper-tint: #131009;
+  --color-ink: #ede4d0;
+  --color-ink-soft: #b8aa8e;
+  --color-ink-muted: #6e6552;
+  --color-rule: #2a2418;
+  --color-accent: #d4a85a;
+  --color-accent-deep: #8c6a2c;
   --font-display: var(--font-instrument-serif), 'Times New Roman', serif;
   --font-sans: var(--font-geist), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -19,15 +19,15 @@ html {
 }
 
 body {
-  background: #f5f1e8;
-  color: #18130d;
+  background: #0b0907;
+  color: #ede4d0;
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Paper grain — subtle warm texture */
+/* Subtle warm vignette + grain on dark */
 .paper-grain {
   position: relative;
 }
@@ -37,12 +37,22 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
+  opacity: 0.85;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(110, 80, 50, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(110, 80, 50, 0.03) 0%, transparent 50%),
-    repeating-radial-gradient(circle at 50% 50%, transparent 0, rgba(50, 30, 10, 0.015) 1px, transparent 2px);
+    radial-gradient(ellipse at 15% 0%, rgba(212, 168, 90, 0.07) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 100%, rgba(212, 168, 90, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+}
+.paper-grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-radial-gradient(circle at 50% 50%, transparent 0, rgba(255, 240, 200, 0.012) 1px, transparent 2px);
 }
 
 /* Display heading – tight, italic-anchored editorial */

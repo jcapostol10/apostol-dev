@@ -12,7 +12,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-ink text-paper font-medium hover:bg-accent transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-paper font-medium hover:bg-accent-deep transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
     >
       {pending ? "Sending…" : (<>Send message <span aria-hidden>→</span></>)}
     </button>
@@ -20,14 +20,14 @@ function SubmitButton() {
 }
 
 const fieldClass =
-  "mt-2 w-full px-0 py-3 bg-transparent border-0 border-b border-rule focus:border-ink focus:outline-none text-ink placeholder:text-ink-muted transition-colors";
+  "mt-2 w-full px-0 py-3 bg-transparent border-0 border-b border-rule focus:border-accent focus:outline-none text-ink placeholder:text-ink-muted transition-colors";
 
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContact, initialState);
 
   if (state.status === "success") {
     return (
-      <div className="border-t border-b border-ink py-16 text-center">
+      <div className="border-t border-b border-accent py-16 text-center">
         <div className="numeral text-6xl mb-4">✓</div>
         <p className="display text-3xl mb-3">Message received.</p>
         <p className="text-ink-soft">{state.message}</p>
@@ -36,7 +36,7 @@ export function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="border-t border-ink pt-10">
+    <form action={formAction} className="border-t border-ink/30 pt-10">
       <div className="grid sm:grid-cols-2 gap-x-8 gap-y-2 mb-2">
         <label className="block">
           <span className="eyebrow">Name</span>
