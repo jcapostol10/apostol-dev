@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, JetBrains_Mono } from "next/font/google";
+import { Inter, Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+const display = Inter({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: ["700", "800", "900"],
   display: "swap",
 });
 

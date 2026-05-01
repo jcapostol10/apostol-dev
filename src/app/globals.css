@@ -84,10 +84,9 @@ body {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 900;
   letter-spacing: -0.035em;
-  line-height: 0.96;
-  font-variation-settings: "wdth" 100, "opsz" 96;
+  line-height: 0.95;
 }
 
 .eyebrow {
