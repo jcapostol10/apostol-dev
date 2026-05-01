@@ -2,96 +2,66 @@ import { ContactForm } from "./contact-form";
 
 const valueProps = [
   {
-    no: "i.",
     title: "SEO that ranks",
-    body: "Schema markup, semantic HTML, and Core Web Vitals tuned to win local search in your category.",
+    body: "Schema markup, semantic HTML, fast Core Web Vitals, and content structure built to win Google in your local market.",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    ),
   },
   {
-    no: "ii.",
     title: "Conversion-led",
-    body: "Every section earns its place. Friction-free forms and funnel patterns proven to turn visitors into customers.",
+    body: "Every section earns its place. Friction-free forms and proven funnel patterns that turn visitors into customers.",
+    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />,
   },
   {
-    no: "iii.",
-    title: "Blazing speed",
-    body: "Sub-1.5s loads on 4G. Edge-deployed, image-optimized, lighthouse-audited before you ever see it.",
+    title: "Blazing performance",
+    body: "Sub-1.5s loads on 4G. Edge-deployed, image-optimized, and lighthouse-audited before you ever see it.",
+    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M13 10V3L4 14h7v7l9-11h-7z" />,
   },
   {
-    no: "iv.",
     title: "Reliable by default",
-    body: "Uptime monitoring, automated backups, and incident response — borrowed from enterprise SRE playbooks.",
+    body: "Uptime monitoring, observability, automated backups, and incident response — borrowed straight from enterprise SRE playbooks.",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    ),
   },
   {
-    no: "v.",
     title: "Mobile-first",
     body: "Designed for the 80% of Filipino traffic on phones. Pixel-perfect from 320px to 4K.",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+    ),
   },
   {
-    no: "vi.",
     title: "AI-powered",
     body: "Smart chatbots, AI search, content generation, and intelligent automation — same tech as the big players.",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+    ),
   },
 ];
 
 const experience = [
-  {
-    period: "2023 — Present",
-    role: "Observability & SRE Manager",
-    company: "Nuskin",
-    detail: "End-to-end visibility for global mobile and web apps. Splunk, Datadog, AWS.",
-  },
-  {
-    period: "2018 — 2022",
-    role: "IT Operations Manager",
-    company: "Swapoolabs",
-    detail: "DevOps and ITSM for a fintech blockchain platform on AWS. ISO 27001-aligned.",
-  },
-  {
-    period: "2013 — 2018",
-    role: "RMG Operations Lead",
-    company: "Macquarie",
-    detail: "Trained in Sydney. Risk applications across APAC, EMEA, Americas.",
-  },
-  {
-    period: "2008 — 2013",
-    role: "Lead Designer",
-    company: "Navitaire-Accenture",
-    detail: "Off-shore in Minneapolis. Led the IATA Simplified Interline Settlement project.",
-  },
+  { period: "2023 — Present", role: "Observability & SRE Manager · Nuskin", detail: "End-to-end visibility for global mobile and web apps. Splunk, Datadog, AWS." },
+  { period: "2018 — 2022", role: "IT Operations Manager · Swapoolabs", detail: "DevOps and ITSM for a fintech blockchain platform on AWS. ISO 27001-aligned." },
+  { period: "2013 — 2018", role: "RMG Operations Lead · Macquarie", detail: "Trained in Sydney. Risk applications across APAC, EMEA, Americas." },
+  { period: "2008 — 2013", role: "Lead Designer · Navitaire-Accenture", detail: "Off-shore in Minneapolis. Led the IATA Simplified Interline Settlement project." },
 ];
 
 const processSteps = [
-  { n: "01", title: "Discovery call", body: "15 minutes on Zoom or Viber. Tell me about your business, customers, and goals." },
+  { n: "01", title: "Discovery call", body: "15-minute Zoom or Viber. Tell me about your business, customers, and goals." },
   { n: "02", title: "I build it", body: "Within days you get a live URL. Working site. Real content. Real-device tested." },
   { n: "03", title: "You review", body: "Test it on your phone, share with your team. Two free revision rounds included." },
   { n: "04", title: "Pay & launch", body: "Only when you're happy. Site goes live on your domain. I keep it running." },
 ];
 
 const faqs = [
-  {
-    q: "What if I don't like the website you build?",
-    a: "You owe me nothing. That's the whole point — I take the risk so you don't have to. Two free revision rounds are included; if it's still not right, we walk away as friends.",
-  },
-  {
-    q: "How long until my website is live?",
-    a: "Most landing pages and small-business sites are live for review within 5–7 business days from the discovery call. Mobile apps and complex e-commerce take 2–4 weeks.",
-  },
-  {
-    q: "Do I own the website?",
-    a: "The domain and content are 100% yours. Hosting and the codebase are managed by me as part of the subscription — that's how I keep monthly costs low and reliability high.",
-  },
-  {
-    q: "Can you build mobile apps too?",
-    a: "Yes. iOS and Android apps are included in the Growth Partner plan. I build cross-platform with React Native so updates are fast and your costs stay low.",
-  },
-  {
-    q: "What kind of AI features can you add?",
-    a: "Customer chatbots that book appointments, AI search across your products, automated content drafting, smart lead-qualification forms, image generation for marketing, and more. We'll scope what makes sense for your business.",
-  },
-  {
-    q: "Can I cancel?",
-    a: "Anytime, no questions asked. I'll export your content and help you transition. No lock-in contracts.",
-  },
+  { q: "What if I don't like the website you build?", a: "You owe me nothing. That's the whole point — I take the risk so you don't have to. Two free revision rounds are included; if it's still not right, we walk away as friends." },
+  { q: "How long until my website is live?", a: "Most landing pages and small-business sites are live for review within 5–7 business days from the discovery call. Mobile apps and complex e-commerce take 2–4 weeks." },
+  { q: "Do I own the website?", a: "The domain and content are 100% yours. Hosting and the codebase are managed by me as part of the subscription — that's how I keep monthly costs low and reliability high." },
+  { q: "Can you build mobile apps too?", a: "Yes. iOS and Android apps are included in the Growth Partner plan. I build cross-platform with React Native so updates are fast and your costs stay low." },
+  { q: "What kind of AI features can you add?", a: "Customer chatbots that book appointments, AI search across your products, automated content drafting, smart lead-qualification forms, image generation for marketing, and more. We'll scope what makes sense for your business." },
+  { q: "Can I cancel?", a: "Anytime, no questions asked. I'll export your content and help you transition. No lock-in contracts." },
 ];
 
 const tickerItems = [
@@ -106,336 +76,267 @@ const tickerItems = [
 export default function HomePage() {
   return (
     <>
-      {/* MASTHEAD */}
-      <header className="relative z-10 border-b border-rule">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
-          <a href="#" className="flex items-baseline gap-2">
-            <span className="display text-2xl">Apostol</span>
-            <span className="display italic text-2xl text-accent">.dev</span>
+      {/* Atmosphere overlays */}
+      <div className="grain" aria-hidden />
+
+      {/* NAV */}
+      <nav className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-ink/65 border-b border-rule">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2.5 group">
+            <span className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-accent-bright to-accent text-ink font-black grid place-items-center shadow-[0_8px_24px_-8px_rgba(255,122,61,0.6)] group-hover:rotate-[-6deg] transition-transform">
+              A
+              <span className="absolute -inset-1 rounded-xl bg-accent/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+            </span>
+            <span className="display text-xl">
+              Apostol<span className="text-accent">.dev</span>
+            </span>
           </a>
-          <nav className="hidden md:flex items-center gap-10 eyebrow">
-            <a href="#services" className="hover:text-ink transition">Services</a>
-            <a href="#why" className="hover:text-ink transition">Practice</a>
-            <a href="#pricing" className="hover:text-ink transition">Rates</a>
-            <a href="#process" className="hover:text-ink transition">Process</a>
-          </nav>
-          <a
-            href="#contact"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-paper text-sm font-medium hover:bg-accent-deep transition-colors"
-          >
-            Start a project
-            <span aria-hidden>→</span>
-          </a>
-        </div>
-        {/* meta strip */}
-        <div className="border-t border-rule">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-2 flex flex-wrap items-center justify-between gap-3 eyebrow">
-            <span>Vol. I — Issue 01</span>
-            <span className="hidden sm:inline">A studio practice, not an agency</span>
-            <span>Manila · BGC, Taguig</span>
+          <div className="hidden md:flex items-center gap-9 text-sm text-paper-soft">
+            <a href="#services" className="hover:text-paper transition">Services</a>
+            <a href="#why" className="hover:text-paper transition">Practice</a>
+            <a href="#pricing" className="hover:text-paper transition">Pricing</a>
+            <a href="#process" className="hover:text-paper transition">Process</a>
           </div>
+          <a href="#contact" className="btn btn-primary text-sm !py-2.5 !px-5">
+            Get a free mockup
+          </a>
         </div>
-      </header>
+      </nav>
 
       {/* HERO */}
-      <section className="relative z-10">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-20">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12">
-            <div className="md:col-span-2 md:pt-3">
-              <div className="eyebrow rise rise-1">
-                <span className="inline-block w-2 h-2 rounded-full bg-accent align-middle mr-2"></span>
-                3 spots · May 2026
-              </div>
-            </div>
-            <div className="md:col-span-10">
-              <h1 className="display text-[14vw] md:text-[10.5vw] lg:text-[140px] mb-10 rise rise-2">
-                Websites &amp; apps,
-                <br />
-                <em>built for</em> Philippine
-                <br />
-                businesses<span className="text-accent">.</span>
-              </h1>
+      <section className="relative overflow-hidden pt-40 pb-24">
+        <div className="aurora" aria-hidden />
+        <div className="absolute inset-0 dotgrid opacity-60 mask-radial-fade" aria-hidden style={{
+          maskImage: "radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 75%)",
+        }} />
 
-              <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-end">
-                <p className="md:col-span-7 text-xl md:text-2xl text-ink-soft leading-snug max-w-[42ch] rise rise-3" style={{ fontFamily: "var(--font-display)" }}>
-                  A small Manila studio building fast, reliable, conversion-focused
-                  digital products for SMEs — with one unusual rule: <em className="text-accent">you see the working site before you pay a peso.</em>
-                </p>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-rule-strong bg-ink-2/60 text-xs font-medium mb-9 rise rise-1">
+            <span className="relative w-2 h-2 rounded-full bg-accent dot-pulse" />
+            <span className="text-paper-soft">3 spots open · May 2026</span>
+          </div>
 
-                <div className="md:col-span-5 flex flex-col sm:flex-row gap-3 rise rise-4">
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-accent text-paper font-medium hover:bg-accent-deep transition-colors"
-                  >
-                    Start a project
-                    <span aria-hidden>→</span>
-                  </a>
-                  <a
-                    href="#pricing"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-ink/40 text-ink hover:border-accent hover:text-accent transition-colors"
-                  >
-                    See rates
-                  </a>
-                </div>
-              </div>
+          <h1 className="display text-[14vw] md:text-[10.5vw] lg:text-[140px] mb-10 max-w-6xl">
+            <span className="rise rise-2 inline-block">Websites &amp; mobile apps</span>{" "}
+            <span className="rise rise-3 inline-block">that <span className="text-sunset">grow</span> Philippine</span>{" "}
+            <span className="rise rise-4 inline-block">businesses<span className="text-accent">.</span></span>
+          </h1>
+
+          <div className="grid md:grid-cols-12 gap-6 md:gap-12 items-end mb-20">
+            <p className="md:col-span-7 text-lg md:text-2xl text-paper-soft leading-snug max-w-2xl rise rise-4">
+              I build fast, reliable, conversion-focused digital products for SMEs in the Philippines —
+              with one unusual rule: <span className="text-paper">you see the working site before you pay a single peso.</span>
+            </p>
+
+            <div className="md:col-span-5 flex flex-col sm:flex-row gap-3 rise rise-5">
+              <a href="#contact" className="btn btn-primary">
+                Build my website
+                <span aria-hidden>→</span>
+              </a>
+              <a href="#pricing" className="btn btn-ghost">
+                See pricing
+              </a>
             </div>
           </div>
-        </div>
 
-        {/* TICKER */}
-        <div className="border-y border-rule overflow-hidden bg-paper-tint/40">
-          <div className="flex marquee-track whitespace-nowrap py-3">
-            {[...tickerItems, ...tickerItems, ...tickerItems].map((t, i) => (
-              <span key={i} className="eyebrow flex items-center gap-8 px-6">
-                <span className="text-accent">✦</span>
-                <span>{t}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* INDEX BAR */}
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            <Stat numeral="18" suffix="+" label="years in software" />
-            <Stat numeral="100" suffix="%" label="no-pay-until-you-see-it" />
-            <Stat numeral="<1.5" suffix="s" label="page-load target" />
-            <Stat numeral="24" suffix="/7" label="monitoring &amp; uptime" />
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10 border-t border-rule-strong">
+            <Stat value="18+" label="Years in software" />
+            <Stat value="100%" label="No-pay-until-you-see-it" />
+            <Stat value="<1.5s" label="Avg page-load target" />
+            <Stat value="24/7" label="Monitoring & uptime" />
           </div>
         </div>
       </section>
 
-      {/* SERVICES — editorial list */}
-      <section id="services" className="relative z-10 border-t border-rule">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-28">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-14">
-            <div className="md:col-span-3">
-              <p className="eyebrow mb-3">§ I</p>
-              <p className="eyebrow">The practice</p>
-            </div>
-            <h2 className="md:col-span-9 display text-5xl md:text-7xl lg:text-8xl">
-              Built like enterprise<br />software, <em>priced</em> for small<br />business.
+      {/* TICKER */}
+      <div className="relative border-y border-rule overflow-hidden bg-ink-2/40">
+        <div className="flex marquee whitespace-nowrap py-4">
+          {[...tickerItems, ...tickerItems, ...tickerItems].map((t, i) => (
+            <span key={i} className="eyebrow flex items-center gap-8 px-8 !text-paper-soft">
+              <svg width="14" height="14" viewBox="0 0 14 14" className="text-accent shrink-0"><path fill="currentColor" d="M7 0l1.6 5.4L14 7l-5.4 1.6L7 14l-1.6-5.4L0 7l5.4-1.6L7 0z"/></svg>
+              <span>{t}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* SERVICES */}
+      <section id="services" className="relative py-28">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-3xl mb-16 reveal">
+            <div className="eyebrow text-accent mb-5">// What you get</div>
+            <h2 className="display text-5xl md:text-7xl">
+              Built like <span className="squiggle">enterprise</span> software.
+              <br />
+              <span className="text-paper-soft">Priced for small business.</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {valueProps.map((p) => (
-              <article key={p.title} className="editorial-card">
-                <div className="flex items-baseline gap-3 mb-3">
-                  <span className="numeral text-2xl">{p.no}</span>
-                  <h3 className="display text-3xl">{p.title}</h3>
+              <article key={p.title} className="card p-8 reveal">
+                <div className="icon-tile mb-6">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {p.icon}
+                  </svg>
                 </div>
-                <p className="text-ink-soft leading-relaxed max-w-[44ch]">{p.body}</p>
+                <h3 className="display text-2xl mb-2.5">{p.title}</h3>
+                <p className="text-paper-soft leading-relaxed">{p.body}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PROMISE — pull quote */}
-      <section className="relative z-10 border-t border-rule bg-paper-tint/40">
-        <div className="max-w-[1100px] mx-auto px-6 md:px-10 py-24 md:py-32 text-center">
-          <p className="eyebrow mb-8">§ II — The promise</p>
-          <blockquote className="display text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
-            “See it live<span className="text-accent">,</span><br />
-            <em>then</em> decide.”
-          </blockquote>
-          <p className="mt-10 text-lg md:text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed">
-            No deposits. No commitment. I build a working version of your site first — you review it on a real URL. Only when you&apos;re happy do we talk about payment.
-          </p>
+      {/* PROMISE */}
+      <section className="relative py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="card p-10 md:p-16 relative overflow-hidden reveal">
+            <div className="absolute -bottom-32 -right-20 w-[400px] h-[400px] rounded-full bg-accent/30 blur-[100px] pointer-events-none" />
+            <div className="absolute -top-20 -left-20 w-[300px] h-[300px] rounded-full bg-cyan/10 blur-[100px] pointer-events-none" />
+            <div className="relative">
+              <div className="eyebrow text-accent mb-5">// The promise</div>
+              <h2 className="display text-5xl md:text-7xl mb-6 leading-[0.98]">
+                See your website live <br />
+                <span className="text-sunset">before you pay.</span>
+              </h2>
+              <p className="text-lg md:text-xl text-paper-soft leading-relaxed max-w-2xl">
+                No deposits. No commitment. I build a working version of your site first — you review it on a real URL. Only when you&apos;re happy do we talk about payment.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* WHY ME — editorial split */}
-      <section id="why" className="relative z-10 border-t border-rule">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-28">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-14">
-            <div className="md:col-span-3">
-              <p className="eyebrow mb-3">§ III</p>
-              <p className="eyebrow">The author</p>
-            </div>
-            <h2 className="md:col-span-9 display text-5xl md:text-7xl lg:text-8xl">
-              <em>Eighteen years</em> building<br />tech for global enterprises.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
-            <div className="md:col-span-6">
-              <p className="drop-cap text-lg text-ink-soft leading-relaxed mb-5 max-w-[55ch]">
-                I&apos;m Jose Carlo Apostol. I&apos;ve led SRE and DevOps teams at Nuskin, built
-                fintech blockchain apps at Swapoolabs, supported global risk-management
-                systems at Macquarie in Sydney, and shipped airline-billing software at
-                Navitaire-Accenture in Minneapolis.
+      {/* WHY ME */}
+      <section id="why" className="relative py-28">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div className="reveal md:sticky md:top-28">
+              <div className="eyebrow text-accent mb-5">// Why me</div>
+              <h2 className="display text-5xl md:text-7xl mb-7">
+                <span className="text-sunset">18 years</span> building tech for global enterprises.
+              </h2>
+              <p className="text-paper-soft text-lg leading-relaxed mb-5 max-w-prose">
+                I&apos;m Jose Carlo Apostol. I&apos;ve led SRE and DevOps teams at Nuskin, built fintech blockchain apps at Swapoolabs, supported global risk-management systems at Macquarie in Sydney, and shipped airline-billing software at Navitaire-Accenture in Minneapolis.
               </p>
-              <p className="text-lg text-ink-soft leading-relaxed mb-8 max-w-[55ch]">
-                Now I&apos;m bringing that same engineering rigor — observability, CI/CD,
-                cloud architecture, security — to Filipino SMEs at small-business prices.
+              <p className="text-paper-soft text-lg leading-relaxed mb-8 max-w-prose">
+                Now I&apos;m bringing that same engineering rigor — observability, CI/CD, cloud architecture, security — to Filipino SMEs at small-business prices.
               </p>
-              <div className="flex flex-wrap gap-x-2 gap-y-1 eyebrow">
-                {[
-                  "AWS Solutions Architect",
-                  "ITIL v3",
-                  "Lean Six Sigma",
-                  "Kubernetes CKA",
-                  "ECE Licensed",
-                  "UST Engineering",
-                ].map((tag, i, arr) => (
-                  <span key={tag} className="flex items-center gap-2">
-                    <span>{tag}</span>
-                    {i < arr.length - 1 && <span className="text-accent">·</span>}
+              <div className="flex flex-wrap gap-2">
+                {["AWS Solutions Architect", "ITIL v3", "Lean Six Sigma", "Kubernetes CKA", "ECE Licensed", "UST Engineering"].map((tag) => (
+                  <span key={tag} className="px-3 py-1.5 rounded-full bg-ink-2 border border-rule text-xs font-mono text-paper-soft">
+                    {tag}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="md:col-span-6">
-              <ol className="space-y-6">
-                {experience.map((e) => (
-                  <li key={e.role} className="grid grid-cols-12 gap-4 pb-6 border-b border-rule last:border-0">
-                    <div className="col-span-4 eyebrow pt-1">{e.period}</div>
-                    <div className="col-span-8">
-                      <div className="display text-2xl leading-tight">{e.role}</div>
-                      <div className="text-ink-soft text-sm mt-1">{e.company}</div>
-                      <div className="text-ink-muted text-sm mt-2">{e.detail}</div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+            <div className="space-y-4">
+              {experience.map((e, i) => (
+                <article key={e.role} className="card p-6 reveal" style={{ animationDelay: `${i * 80}ms` }}>
+                  <div className="eyebrow text-accent mb-2">{e.period}</div>
+                  <div className="display text-xl mb-1.5">{e.role}</div>
+                  <div className="text-paper-soft text-sm leading-relaxed">{e.detail}</div>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="relative z-10 border-t border-rule bg-paper-tint/40">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-28">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-14">
-            <div className="md:col-span-3">
-              <p className="eyebrow mb-3">§ IV</p>
-              <p className="eyebrow">The rates</p>
-            </div>
-            <h2 className="md:col-span-9 display text-5xl md:text-7xl lg:text-8xl">
-              Two plans. <em>No</em> surprises.
-            </h2>
+      <section id="pricing" className="relative py-28">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16 reveal">
+            <div className="eyebrow text-accent mb-5">// Simple pricing</div>
+            <h2 className="display text-5xl md:text-7xl mb-5">Two plans. <span className="text-sunset">No surprises.</span></h2>
+            <p className="text-paper-soft text-lg">All prices in PHP. Cancel anytime. Build first, pay only when you love it.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {/* Subscription */}
-            <article className="border border-rule p-10 md:p-12">
-              <div className="eyebrow mb-6">Subscription</div>
-              <h3 className="display text-4xl mb-4">Website Subscription</h3>
+            <article className="card p-10 reveal">
+              <div className="eyebrow mb-3">Subscription</div>
+              <h3 className="display text-3xl mb-5">Website Subscription</h3>
               <div className="flex items-baseline gap-2 mb-3">
-                <span className="display text-7xl">₱1,500</span>
-                <span className="eyebrow">/ month</span>
+                <span className="display text-6xl">₱1,500</span>
+                <span className="text-paper-soft">/ month</span>
               </div>
-              <p className="text-ink-soft mb-8 max-w-[40ch]">
-                For businesses launching online or replacing a tired website.
-              </p>
-              <ul className="space-y-3 mb-10 text-ink-soft">
-                {[
-                  "Custom-designed website, mobile-first",
-                  "SEO setup &amp; schema markup",
-                  "Hosting, SSL &amp; global CDN",
-                  "Up to 2 small content updates / month",
-                  "Uptime monitoring &amp; backups",
-                  "Built first — pay only when you approve",
-                ].map((b) => (
+              <p className="text-paper-soft mb-9">Perfect for businesses launching online or replacing a tired website.</p>
+              <ul className="space-y-3 mb-10">
+                {["Custom-designed website, mobile-first", "SEO setup & schema markup", "Hosting, SSL & global CDN included", "Up to 2 small content updates per month", "Uptime monitoring & automated backups", "Built first — pay only when you approve"].map((b) => (
                   <li key={b} className="flex gap-3 leading-relaxed">
-                    <span className="text-accent mt-1">→</span>
-                    <span dangerouslySetInnerHTML={{ __html: b }} />
+                    <Check />
+                    <span>{b}</span>
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="block w-full text-center px-6 py-4 border border-ink/40 text-ink hover:border-accent hover:text-accent transition-colors font-medium">
-                Get started
-              </a>
+              <a href="#contact" className="btn btn-ghost w-full">Get started</a>
             </article>
 
-            {/* Retainer */}
-            <article className="border border-accent p-10 md:p-12 relative bg-gradient-to-br from-accent/[0.06] to-transparent">
-              <div className="absolute -top-px right-8 px-4 py-1 bg-accent text-paper eyebrow">
+            <article className="card card-feature p-10 relative reveal">
+              <div className="absolute -top-3 left-8 px-3 py-1 rounded-full bg-gradient-to-r from-accent-bright to-accent text-ink text-xs font-bold uppercase tracking-wider">
                 Most popular
               </div>
-              <div className="eyebrow text-accent mb-6">Retainer &amp; Support</div>
-              <h3 className="display text-4xl mb-4">Growth Partner</h3>
+              <div className="eyebrow text-accent mb-3">Retainer & Support</div>
+              <h3 className="display text-3xl mb-5">Growth Partner</h3>
               <div className="flex items-baseline gap-2 mb-3">
-                <span className="display text-7xl">₱5,000</span>
-                <span className="eyebrow">/ month</span>
+                <span className="display text-6xl text-sunset">₱5,000</span>
+                <span className="text-paper-soft">/ month</span>
               </div>
-              <p className="text-ink-soft mb-8 max-w-[40ch]">
-                For businesses that want their website to actively grow revenue.
-              </p>
-              <ul className="space-y-3 mb-10 text-ink-soft">
-                {[
-                  "Everything in Subscription",
-                  "Priority support — same-day response",
-                  "Unlimited content updates",
-                  "Mobile app development included",
-                  "AI features: chatbot, smart search, automations",
-                  "Monthly performance &amp; SEO reports",
-                  "A/B testing &amp; conversion optimization",
-                  "24/7 monitoring &amp; incident response",
-                ].map((b) => (
+              <p className="text-paper-soft mb-9">For businesses that want their website to actively grow revenue.</p>
+              <ul className="space-y-3 mb-10">
+                {["Everything in Subscription", "Priority support — same-day response", "Unlimited content updates", "Mobile app development included", "AI features: chatbot, smart search, automations", "Monthly performance & SEO reports", "A/B testing & conversion optimization", "24/7 monitoring & incident response"].map((b) => (
                   <li key={b} className="flex gap-3 leading-relaxed">
-                    <span className="text-accent mt-1">→</span>
-                    <span dangerouslySetInnerHTML={{ __html: b }} />
+                    <Check />
+                    <span>{b}</span>
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="block w-full text-center px-6 py-4 bg-accent text-paper hover:bg-accent-deep transition-colors font-medium">
-                Become a partner
-              </a>
+              <a href="#contact" className="btn btn-primary w-full">Become a partner</a>
             </article>
           </div>
         </div>
       </section>
 
       {/* PROCESS */}
-      <section id="process" className="relative z-10 border-t border-rule">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-28">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-14">
-            <div className="md:col-span-3">
-              <p className="eyebrow mb-3">§ V</p>
-              <p className="eyebrow">The process</p>
-            </div>
-            <h2 className="md:col-span-9 display text-5xl md:text-7xl lg:text-8xl">
-              From conversation<br />to live site, <em>in days.</em>
-            </h2>
+      <section id="process" className="relative py-28">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-3xl mb-16 reveal">
+            <div className="eyebrow text-accent mb-5">// How it works</div>
+            <h2 className="display text-5xl md:text-7xl">From conversation to live site, <span className="text-sunset">in days.</span></h2>
           </div>
 
-          <ol className="grid md:grid-cols-4 gap-x-10 gap-y-12">
-            {processSteps.map((s) => (
-              <li key={s.n} className="border-t border-ink/30 pt-5">
-                <div className="numeral text-6xl leading-none mb-4">{s.n}</div>
-                <h3 className="display text-2xl mb-2">{s.title}</h3>
-                <p className="text-ink-soft text-sm leading-relaxed">{s.body}</p>
-              </li>
+          <div className="grid md:grid-cols-4 gap-5">
+            {processSteps.map((s, i) => (
+              <div key={s.n} className="card p-7 reveal" style={{ animationDelay: `${i * 80}ms` }}>
+                <div className="display text-5xl text-accent mb-4 leading-none">{s.n}</div>
+                <h3 className="display text-xl mb-2">{s.title}</h3>
+                <p className="text-paper-soft text-sm leading-relaxed">{s.body}</p>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="relative z-10 border-t border-rule bg-paper-tint/40">
-        <div className="max-w-[1100px] mx-auto px-6 md:px-10 py-20 md:py-28">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-12">
-            <div className="md:col-span-3">
-              <p className="eyebrow mb-3">§ VI</p>
-              <p className="eyebrow">Marginalia</p>
-            </div>
-            <h2 className="md:col-span-9 display text-5xl md:text-7xl lg:text-8xl">
-              Common <em>questions.</em>
-            </h2>
+      <section className="relative py-28">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-14 reveal">
+            <div className="eyebrow text-accent mb-5">// FAQ</div>
+            <h2 className="display text-5xl md:text-7xl">Common <span className="text-sunset">questions.</span></h2>
           </div>
 
-          <div className="border-t border-ink/30">
-            {faqs.map((f) => (
-              <details key={f.q} className="group border-b border-rule">
-                <summary className="flex justify-between items-baseline cursor-pointer list-none py-5 gap-6">
-                  <span className="display text-2xl md:text-3xl flex-1">{f.q}</span>
-                  <span className="numeral text-3xl group-open:rotate-45 transition-transform">+</span>
+          <div className="space-y-3">
+            {faqs.map((f, i) => (
+              <details key={f.q} className="card group p-6 reveal" style={{ animationDelay: `${i * 60}ms` }}>
+                <summary className="flex justify-between items-center cursor-pointer font-semibold text-lg list-none gap-6">
+                  <span>{f.q}</span>
+                  <span className="text-accent text-2xl group-open:rotate-45 transition-transform shrink-0">+</span>
                 </summary>
-                <p className="pb-6 text-ink-soft leading-relaxed max-w-[60ch]">{f.a}</p>
+                <p className="text-paper-soft mt-4 leading-relaxed">{f.a}</p>
               </details>
             ))}
           </div>
@@ -443,78 +344,57 @@ export default function HomePage() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="relative z-10 border-t border-rule">
-        <div className="max-w-[1100px] mx-auto px-6 md:px-10 py-20 md:py-28">
-          <div className="text-center mb-12">
-            <p className="eyebrow mb-6">§ VII — Correspondence</p>
-            <h2 className="display text-5xl md:text-7xl lg:text-8xl mb-6">
-              Let&apos;s build something<br /><em>that moves the needle.</em>
+      <section id="contact" className="relative py-28">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-12 reveal">
+            <div className="eyebrow text-accent mb-5">// Correspondence</div>
+            <h2 className="display text-5xl md:text-7xl mb-5">
+              Let&apos;s build something that <span className="text-sunset">moves the needle.</span>
             </h2>
-            <p className="text-lg text-ink-soft max-w-xl mx-auto">
+            <p className="text-paper-soft text-lg max-w-xl mx-auto">
               A 15-minute call. No sales pitch. We&apos;ll figure out if it&apos;s a fit.
             </p>
           </div>
+          <div className="reveal">
+            <ContactForm />
+          </div>
 
-          <ContactForm />
-
-          <div className="mt-12 pt-8 border-t border-rule grid sm:grid-cols-3 gap-4 text-sm text-center">
-            <a href="mailto:josecarlo.apostol@gmail.com" className="link-underline">
-              josecarlo.apostol@gmail.com
-            </a>
-            <a href="https://wa.me/639178129809" className="link-underline">
-              +63 917 812 9809
-            </a>
-            <span className="text-ink-muted">BGC, Taguig City</span>
+          <div className="mt-12 pt-8 border-t border-rule grid sm:grid-cols-3 gap-4 text-sm text-center text-paper-soft">
+            <a href="mailto:josecarlo.apostol@gmail.com" className="link-grow">josecarlo.apostol@gmail.com</a>
+            <a href="https://wa.me/639178129809" className="link-grow">+63 917 812 9809</a>
+            <span>BGC, Taguig City</span>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="relative z-10 border-t border-rule bg-paper-tint">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-16">
-          <div className="grid md:grid-cols-12 gap-8 mb-12">
-            <div className="md:col-span-6">
-              <div className="display text-6xl md:text-8xl">
-                Apostol<em className="text-accent">.dev</em>
-              </div>
-              <p className="mt-4 text-ink-soft max-w-md">
-                A studio practice. Engineered websites and mobile apps for Philippine businesses.
-              </p>
-            </div>
-            <div className="md:col-span-3">
-              <p className="eyebrow mb-4">Studio</p>
-              <ul className="space-y-2 text-ink-soft">
-                <li><a href="#services" className="link-underline">Services</a></li>
-                <li><a href="#pricing" className="link-underline">Rates</a></li>
-                <li><a href="#process" className="link-underline">Process</a></li>
-              </ul>
-            </div>
-            <div className="md:col-span-3">
-              <p className="eyebrow mb-4">Correspondence</p>
-              <ul className="space-y-2 text-ink-soft">
-                <li><a href="mailto:josecarlo.apostol@gmail.com" className="link-underline">Email</a></li>
-                <li><a href="https://wa.me/639178129809" className="link-underline">WhatsApp</a></li>
-              </ul>
-            </div>
+      <footer className="relative border-t border-rule py-14 mt-8">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-paper-mute">
+          <div className="flex items-center gap-2.5 font-semibold text-paper">
+            <span className="w-7 h-7 rounded-md bg-gradient-to-br from-accent-bright to-accent text-ink font-black grid place-items-center text-xs">A</span>
+            Apostol<span className="text-accent">.dev</span>
           </div>
-          <div className="pt-6 border-t border-rule flex flex-col md:flex-row justify-between gap-3 eyebrow">
-            <span>© 2026 Jose Carlo Apostol</span>
-            <span>Set in Instrument Serif &amp; Geist · Built in the Philippines</span>
-          </div>
+          <div className="eyebrow">© 2026 Jose Carlo Apostol · Built in the Philippines</div>
         </div>
       </footer>
     </>
   );
 }
 
-function Stat({ numeral, suffix, label }: { numeral: string; suffix: string; label: string }) {
+function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="border-t border-ink pt-4">
-      <div className="flex items-baseline gap-1">
-        <span className="display text-6xl md:text-7xl leading-none">{numeral}</span>
-        <span className="display italic text-3xl text-accent">{suffix}</span>
-      </div>
-      <div className="eyebrow mt-3" dangerouslySetInnerHTML={{ __html: label }} />
+    <div className="reveal">
+      <div className="display text-4xl md:text-5xl text-sunset">{value}</div>
+      <div className="text-sm text-paper-soft mt-2">{label}</div>
     </div>
+  );
+}
+
+function Check() {
+  return (
+    <svg className="w-5 h-5 text-accent shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="9" stroke="currentColor" strokeOpacity="0.3" strokeWidth="1" />
+      <path d="M6 10.5l2.5 2.5L14 7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
