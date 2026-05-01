@@ -99,7 +99,7 @@ const tickerItems = [
   "Priced for small business",
   "See it before you pay",
   "Manila · BGC, Taguig",
-  "17+ years in software",
+  "18+ years in software",
   "AWS · Kubernetes · React Native",
 ];
 
@@ -197,7 +197,7 @@ export default function HomePage() {
         {/* INDEX BAR */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            <Stat numeral="17" suffix="+" label="years in software" />
+            <Stat numeral="18" suffix="+" label="years in software" />
             <Stat numeral="100" suffix="%" label="no-pay-until-you-see-it" />
             <Stat numeral="<1.5" suffix="s" label="page-load target" />
             <Stat numeral="24" suffix="/7" label="monitoring &amp; uptime" />
@@ -255,7 +255,7 @@ export default function HomePage() {
               <p className="eyebrow">The author</p>
             </div>
             <h2 className="md:col-span-9 display text-5xl md:text-7xl lg:text-8xl">
-              <em>Seventeen years</em> building<br />tech for global enterprises.
+              <em>Eighteen years</em> building<br />tech for global enterprises.
             </h2>
           </div>
 
