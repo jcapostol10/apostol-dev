@@ -199,7 +199,7 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-6 py-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-rule rounded-xl overflow-hidden border border-rule">
             <Stat value="18" suffix="yrs" label="In software, end-to-end" />
-            <Stat value="100" suffix="%" label="Build first, pay after" accent />
+            <Stat value="100" suffix="%" label="Value first, pay later" accent />
             <Stat value="<1.5" suffix="s" label="Page-load target on 4G" />
             <Stat value="24/7" suffix="" label="Monitoring &amp; uptime" />
           </div>
