@@ -241,7 +241,7 @@ export default function HomePage() {
             <em>then</em> decide.”
           </blockquote>
           <p className="mt-10 text-lg md:text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed">
-            No deposits. No commitment. I build a working version of your site first — you review it on a real URL, on your real phone. Only when you&apos;re happy do we talk about payment.
+            No deposits. No commitment. I build a working version of your site first — you review it on a real URL. Only when you&apos;re happy do we talk about payment.
           </p>
         </div>
       </section>
