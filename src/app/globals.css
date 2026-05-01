@@ -500,9 +500,9 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 26%;
-  height: 26%;
-  margin: -13% 0 0 -13%;
+  width: 30%;
+  height: 30%;
+  margin: -15% 0 0 -15%;
   border-radius: 50%;
   border: 2px solid rgba(255, 106, 61, 0.85);
   box-shadow:
@@ -525,14 +525,36 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 9%;
-  height: 9%;
-  margin: -4.5% 0 0 -4.5%;
+  width: 16%;
+  height: 16%;
+  margin: -8% 0 0 -8%;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, #ffe5c4 0%, #ffb86b 38%, #ff6a3d 70%, #c34317 100%);
+  /* Counter-rotate the disc tilt so the sphere stays circular from POV.
+     The sphere is also lifted above the disc plane via translateZ. */
+  transform: translateZ(40px) rotateX(-62deg);
+  background:
+    /* specular pinpoint */
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 14%),
+    /* warm key light */
+    radial-gradient(circle at 32% 28%, #ffe6c2 0%, #ffb86b 22%, #ff8a4d 48%, #ff5e1f 70%, #b13310 100%);
   box-shadow:
-    0 0 40px rgba(255, 106, 61, 0.85),
-    0 0 100px rgba(255, 106, 61, 0.45);
+    inset -8px -10px 18px rgba(0, 0, 0, 0.55),
+    inset 4px 5px 10px rgba(255, 230, 200, 0.25),
+    0 0 60px rgba(255, 106, 61, 0.7),
+    0 0 140px rgba(255, 106, 61, 0.35);
+}
+.orbital-core::after {
+  /* soft second specular */
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: 18%;
+  width: 24%;
+  height: 18%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.55) 0%, transparent 70%);
+  filter: blur(2px);
+  pointer-events: none;
 }
 
 /* Faint orbit guide-rings (etched lines) */

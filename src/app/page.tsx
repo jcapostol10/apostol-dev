@@ -480,9 +480,9 @@ function Orbital() {
   // Each ring: radius (cqi), count, arc width, radial thickness, depth (3D),
   // and a presence pattern so the ring isn't a uniform crown.
   const rings = [
-    { cls: "outer", radius: 44, count: 14, arc: 72, thick: 26, depth: 14, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const },
-    { cls: "mid",   radius: 30, count: 10, arc: 54, thick: 20, depth: 11, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const },
-    { cls: "inner", radius: 18, count: 8,  arc: 36, thick: 14, depth: 8,  jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const },
+    { cls: "outer", radius: 44, count: 14, arc: 72, thick: 26, depth: 36, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const },
+    { cls: "mid",   radius: 30, count: 10, arc: 54, thick: 20, depth: 28, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const },
+    { cls: "inner", radius: 18, count: 8,  arc: 36, thick: 14, depth: 20, jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const },
   ];
 
   return (
