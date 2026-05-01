@@ -183,7 +183,7 @@ export default function HomePage() {
 
             {/* ORBITAL */}
             <aside className="lg:col-span-5 rise rise-4 hidden lg:block">
-              <div className="relative lg:scale-[1.18] lg:-mr-10 xl:-mr-16 origin-center">
+              <div className="relative lg:scale-[1.18] lg:-mr-16 xl:-mr-24 lg:-mt-10 lg:translate-x-6 origin-center">
                 <Orbital />
               </div>
             </aside>
@@ -477,12 +477,12 @@ function Metric({ label, value, hint }: { label: string; value: string; hint: st
 function Orbital() {
   // Three concentric rings of segments + halo + glowing core.
   // Pure CSS 3D, no canvas. Inspired by orbital / atomic compositions.
-  // Each ring: radius (cqi units), segment count, arc width, radial thickness,
+  // Each ring: radius (cqi), count, arc width, radial thickness, depth (3D),
   // and a presence pattern so the ring isn't a uniform crown.
   const rings = [
-    { cls: "outer", radius: 44, count: 14, arc: 72, thick: 26, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const },
-    { cls: "mid",   radius: 30, count: 10, arc: 54, thick: 20, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const },
-    { cls: "inner", radius: 18, count: 8,  arc: 36, thick: 14, jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const },
+    { cls: "outer", radius: 44, count: 14, arc: 72, thick: 26, depth: 14, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const },
+    { cls: "mid",   radius: 30, count: 10, arc: 54, thick: 20, depth: 11, jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const },
+    { cls: "inner", radius: 18, count: 8,  arc: 36, thick: 14, depth: 8,  jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const },
   ];
 
   return (
@@ -502,12 +502,19 @@ function Orbital() {
                   key={i}
                   className="orbital-seg"
                   style={{
-                    width: `${r.arc}px`,
-                    height: `${r.thick}px`,
                     ["--a" as string]: `${angle}deg`,
                     ["--r" as string]: `${r.radius}cqi`,
+                    ["--w" as string]: `${r.arc}px`,
+                    ["--h" as string]: `${r.thick}px`,
+                    ["--d" as string]: `${r.depth}px`,
                   }}
-                />
+                >
+                  <span className="face face-top" />
+                  <span className="face face-front" />
+                  <span className="face face-back" />
+                  <span className="face face-right" />
+                  <span className="face face-left" />
+                </span>
               );
             })}
           </div>

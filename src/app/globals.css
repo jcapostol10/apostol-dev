@@ -420,29 +420,80 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
   transform-origin: 50% 50%;
-  transform: translate(-50%, -50%) rotateZ(var(--a)) translateY(calc(-1 * var(--r)));
-  border-radius: 4px;
-  background:
-    linear-gradient(120deg,
-      rgba(255, 106, 61, 0.06) 0%,
-      rgba(60, 50, 42, 0.95) 25%,
-      rgba(38, 32, 28, 0.95) 60%,
-      rgba(28, 24, 20, 0.95) 100%);
-  border: 1px solid rgba(255, 106, 61, 0.18);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 184, 107, 0.18),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
-    0 1px 2px rgba(0, 0, 0, 0.6);
+  transform: translate3d(-50%, -50%, 0) rotateZ(var(--a)) translateY(calc(-1 * var(--r)));
 }
-.orbital-seg::after {
-  /* sheen */
-  content: "";
+
+/* Faces of the 3D box. Each segment is W (arc) × H (radial) × D (depth). */
+.face {
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(140deg, rgba(255, 184, 107, 0.18) 0%, transparent 28%, transparent 72%, rgba(255, 106, 61, 0.08) 100%);
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 106, 61, 0.14);
+}
+
+/* Top face — the most visible from above-tilted view; has the rim-light. */
+.face-top {
+  width: var(--w);
+  height: var(--h);
+  margin-left: calc(var(--w) / -2);
+  margin-top: calc(var(--h) / -2);
+  transform: translateZ(calc(var(--d) / 2));
+  background:
+    linear-gradient(140deg,
+      #4a3d2e 0%,
+      #342a22 30%,
+      #221c17 65%,
+      #1a1410 100%);
+  border-color: rgba(255, 184, 107, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 200, 140, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Front (+Y) face — visible from below-tilt; warmer rim light. */
+.face-front {
+  width: var(--w);
+  height: var(--d);
+  margin-left: calc(var(--w) / -2);
+  margin-top: calc(var(--d) / -2);
+  transform: rotateX(-90deg) translateZ(calc(var(--h) / 2));
+  background: linear-gradient(180deg, #2a2018 0%, #150f0b 100%);
+  border-top-color: rgba(255, 184, 107, 0.28);
+}
+
+/* Back (-Y) face — usually in shadow. */
+.face-back {
+  width: var(--w);
+  height: var(--d);
+  margin-left: calc(var(--w) / -2);
+  margin-top: calc(var(--d) / -2);
+  transform: rotateX(90deg) translateZ(calc(var(--h) / 2));
+  background: linear-gradient(180deg, #1c1612 0%, #110d0a 100%);
+}
+
+/* Right (+X) face. */
+.face-right {
+  width: var(--d);
+  height: var(--h);
+  margin-left: calc(var(--d) / -2);
+  margin-top: calc(var(--h) / -2);
+  transform: rotateY(90deg) translateZ(calc(var(--w) / 2));
+  background: linear-gradient(90deg, #1c1612 0%, #100c09 100%);
+}
+
+/* Left (-X) face. */
+.face-left {
+  width: var(--d);
+  height: var(--h);
+  margin-left: calc(var(--d) / -2);
+  margin-top: calc(var(--h) / -2);
+  transform: rotateY(-90deg) translateZ(calc(var(--w) / 2));
+  background: linear-gradient(90deg, #100c09 0%, #1c1612 100%);
 }
 
 .orbital-halo {
