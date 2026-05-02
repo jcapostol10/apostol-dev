@@ -376,12 +376,16 @@ body {
 
 .solution-stack {
   position: relative;
+  padding-bottom: 30vh;
 }
 
 .solution-card {
   position: sticky;
   top: calc(80px + var(--i, 0) * 60px);
-  margin-bottom: 24vh;
+  margin-bottom: 0;
+  /* Heights descend with index so every card has the same stuck-bottom —
+     this makes the whole stack leave the viewport together. */
+  min-height: calc(70vh + (var(--total, 7) - 1 - var(--i, 0)) * 60px);
   border-radius: 28px;
   /* Opaque so prior cards don't bleed through; warm-bg to differentiate from page bg */
   background:
@@ -422,14 +426,10 @@ body {
   z-index: -1;
 }
 
-.solution-card:last-of-type {
-  margin-bottom: 0;
-}
-
 @media (max-width: 768px) {
+  .solution-stack { gap: 4vh; }
   .solution-card {
-    top: calc(72px + var(--i, 0) * 10px);
-    margin-bottom: 18vh;
+    top: calc(72px + var(--i, 0) * 48px);
     border-radius: 20px;
   }
 }
