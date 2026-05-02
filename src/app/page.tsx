@@ -225,14 +225,6 @@ export default function HomePage() {
               </svg>
               Web &amp; Mobile Integrated
             </span>
-            <span className="hidden sm:inline text-text-3/40">·</span>
-            <span className="inline-flex items-center gap-2 text-accent bg-accent/10 px-2.5 py-1 rounded">
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-60" />
-                <span className="relative inline-flex w-2 h-2 rounded-full bg-accent" />
-              </span>
-              Now accepting 3 clients
-            </span>
           </div>
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
