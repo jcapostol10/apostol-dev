@@ -382,7 +382,7 @@ body {
 .solution-card {
   position: sticky;
   top: calc(80px + var(--i, 0) * 60px);
-  margin-bottom: 0;
+  margin-bottom: 22vh;
   border-radius: 28px;
   /* Opaque so prior cards don't bleed through; warm-bg to differentiate from page bg */
   background:
