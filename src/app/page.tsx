@@ -583,19 +583,19 @@ function Orbital() {
       ],
     },
     {
-      cls: "r3", // CCW
+      cls: "r3", // CCW; three equidistant arcs (120° apart)
       arcs: [
-        { y: 0, r: 38, start:  10, span:  90, height: 19, thickness: 3.0, segments: 10 },
-        { y: 0, r: 38, start: 115, span:  75, height: 17, thickness: 3.0, segments: 8 },
-        { y: 0, r: 38, start: 205, span: 120, height: 19, thickness: 3.0, segments: 13 },
+        { y: 0, r: 38, start:   0, span: 80, height: 19, thickness: 3.0, segments: 9 },
+        { y: 0, r: 38, start: 120, span: 80, height: 19, thickness: 3.0, segments: 9 },
+        { y: 0, r: 38, start: 240, span: 80, height: 19, thickness: 3.0, segments: 9 },
       ],
     },
     {
-      cls: "r2", // CW
+      cls: "r2", // CW; three equidistant arcs (120° apart)
       arcs: [
-        { y: 0, r: 26, start:  25, span:  85, height: 14, thickness: 2.6, segments: 9 },
-        { y: 0, r: 26, start: 130, span:  60, height: 13, thickness: 2.6, segments: 7 },
-        { y: 0, r: 26, start: 210, span:  90, height: 14, thickness: 2.6, segments: 10 },
+        { y: 0, r: 26, start:  60, span: 80, height: 14, thickness: 2.6, segments: 9 },
+        { y: 0, r: 26, start: 180, span: 80, height: 14, thickness: 2.6, segments: 9 },
+        { y: 0, r: 26, start: 300, span: 80, height: 14, thickness: 2.6, segments: 9 },
       ],
     },
     {
