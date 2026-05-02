@@ -1,0 +1,12 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
+await page.goto("http://localhost:3001", { waitUntil: "networkidle" });
+await page.evaluate(() => document.fonts.ready);
+await page.waitForTimeout(800);
+const wrap = page.locator(".orbital").first();
+await wrap.scrollIntoViewIfNeeded();
+await page.waitForTimeout(400);
+await wrap.screenshot({ path: "scripts/screens/orbital.png" });
+await browser.close();
+console.log("ok");

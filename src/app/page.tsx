@@ -553,14 +553,17 @@ function Orbital() {
   // so the orbit reads as machined/circuit-like fragments rather than a
   // uniform crown of identical tiles.
   type Kind = "slab" | "post" | "cube" | "pillar" | "fin" | "block" | "chip";
+  // All shapes are tangent panels: w (tangent to ring) >= h (radial thickness),
+  // with large d (vertical height) so the orbit reads as upright fence panels
+  // wrapping the sphere — no radial protrusions.
   const shapes: Record<Kind, { w: number; h: number; d: number }> = {
-    slab:   { w: 86, h: 28, d: 18 }, // wide low circuit plate
-    post:   { w: 14, h: 14, d: 64 }, // tall thin antenna
-    cube:   { w: 30, h: 30, d: 28 }, // component cube
-    pillar: { w: 22, h: 22, d: 52 }, // upright pillar
-    fin:    { w: 10, h: 56, d: 38 }, // thin radial fin
-    block:  { w: 50, h: 32, d: 26 }, // wide medium block
-    chip:   { w: 38, h: 18, d: 12 }, // shallow flat chip
+    slab:   { w: 78, h: 16, d: 84 },  // wide tall curved panel
+    post:   { w: 22, h: 16, d: 120 }, // tall narrow column
+    cube:   { w: 36, h: 22, d: 68 },  // tall block
+    pillar: { w: 30, h: 20, d: 130 }, // tallest pillar
+    fin:    { w: 56, h: 14, d: 100 }, // tall thin panel (was radial fin)
+    block:  { w: 60, h: 22, d: 92 },  // wide tall block
+    chip:   { w: 48, h: 12, d: 56 },  // shorter thin panel
   };
 
   const rings: { cls: string; radius: number; count: number; kinds: Kind[]; jitter: readonly number[] }[] = [

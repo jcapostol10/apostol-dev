@@ -1,0 +1,14 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
+await page.emulateMedia({ reducedMotion: "reduce" });
+await page.goto("http://localhost:3001", { waitUntil: "networkidle" });
+await page.addStyleTag({ content: "*, *::before, *::after { animation: none !important; transition: none !important; }" });
+await page.evaluate(() => document.fonts.ready);
+await page.waitForTimeout(400);
+const wrap = page.locator(".marquee").first().locator("..");
+await wrap.scrollIntoViewIfNeeded();
+await page.waitForTimeout(200);
+await wrap.screenshot({ path: "scripts/screens/marquee.png" });
+await browser.close();
+console.log("ok");
