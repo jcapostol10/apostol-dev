@@ -378,8 +378,8 @@ body {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  perspective: 1400px;
-  perspective-origin: 50% 38%;
+  perspective: 2200px;
+  perspective-origin: 50% 50%;
   container-type: inline-size;
 }
 
@@ -391,9 +391,9 @@ body {
 }
 
 @keyframes orb-drift {
-  0%   { transform: rotateX(32deg) rotateZ(-12deg) translate3d(0, 0, 0); }
-  50%  { transform: rotateX(30deg) rotateZ(-10deg) translate3d(0, 0, 0); }
-  100% { transform: rotateX(32deg) rotateZ(-12deg) translate3d(0, 0, 0); }
+  0%   { transform: rotateX(60deg) rotateZ(-10deg); }
+  50%  { transform: rotateX(58deg) rotateZ(-8deg); }
+  100% { transform: rotateX(60deg) rotateZ(-10deg); }
 }
 
 .orbital-ring {
@@ -558,9 +558,9 @@ body {
 }
 
 @keyframes orb-core-cancel {
-  0%   { transform: rotateX(-32deg) rotateZ(12deg); }
-  50%  { transform: rotateX(-30deg) rotateZ(10deg); }
-  100% { transform: rotateX(-32deg) rotateZ(12deg); }
+  0%   { transform: rotateX(-60deg) rotateZ(10deg); }
+  50%  { transform: rotateX(-58deg) rotateZ(8deg); }
+  100% { transform: rotateX(-60deg) rotateZ(10deg); }
 }
 
 /* Floating satellite — small bright dot drifting outside the main scene. */
