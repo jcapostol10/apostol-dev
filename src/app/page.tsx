@@ -93,6 +93,68 @@ const faqs = [
   { q: "Can I cancel?", a: "Anytime, no questions asked. I'll export your content and help you transition. No lock-in contracts." },
 ];
 
+const iconProps = {
+  width: 22,
+  height: 22,
+  viewBox: "0 0 24 24",
+  fill: "none" as const,
+  stroke: "currentColor",
+  strokeWidth: 1.5,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
+const tickerItems = [
+  {
+    text: "Built like enterprise software",
+    icon: (
+      <svg {...iconProps}>
+        <rect x="3.5" y="4.5" width="17" height="6" rx="1.2" />
+        <rect x="3.5" y="13.5" width="17" height="6" rx="1.2" />
+        <circle cx="7" cy="7.5" r="0.7" fill="currentColor" />
+        <circle cx="7" cy="16.5" r="0.7" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    text: "Priced for small business",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M20.6 12.4 12.4 20.6a1.7 1.7 0 0 1-2.4 0L3.4 14a1.7 1.7 0 0 1-.5-1.2V5a2.1 2.1 0 0 1 2.1-2.1h7.8c.5 0 .9.2 1.2.5l6.6 6.6a1.7 1.7 0 0 1 0 2.4Z" />
+        <circle cx="8.2" cy="8.2" r="1.3" />
+      </svg>
+    ),
+  },
+  {
+    text: "See it before you pay",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
+  },
+  {
+    text: "18+ years software engineering",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M9 7 4 12l5 5" />
+        <path d="m15 7 5 5-5 5" />
+      </svg>
+    ),
+  },
+  {
+    text: "Web and mobile integrated",
+    icon: (
+      <svg {...iconProps}>
+        <rect x="2.5" y="4" width="13" height="10" rx="1.2" />
+        <path d="M5.5 17h7" />
+        <rect x="14.5" y="9" width="7" height="11" rx="1.2" />
+      </svg>
+    ),
+  },
+];
+
 const stack = [
   "AWS Solutions Architect",
   "Kubernetes (CKA)",
@@ -145,11 +207,32 @@ export default function HomePage() {
         <div className="absolute inset-0 dot-grid fade-mask opacity-80" aria-hidden />
 
         <div className="relative max-w-[1240px] mx-auto px-6">
-          <div className="eyebrow flex items-center gap-3 mb-7 rise rise-1">
-            <span className="text-accent">[ HERO ]</span>
-            <span>v18.0 · Manila, PH</span>
-            <span className="hidden sm:inline">·</span>
-            <span className="hidden sm:inline">Now accepting 3 clients</span>
+          <div className="eyebrow flex flex-wrap items-center gap-x-5 gap-y-3 mb-7 rise rise-1 !text-[0.95rem] !tracking-[0.1em]">
+            <span className="text-accent font-semibold">[ HERO ]</span>
+            <span className="inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-accent" aria-hidden>
+                <circle cx="12" cy="12" r="9" />
+                <polyline points="12 7 12 12 15 14" />
+              </svg>
+              18+ Years Software Engineering
+            </span>
+            <span className="hidden sm:inline text-text-3/40">·</span>
+            <span className="inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-accent" aria-hidden>
+                <rect x="2.5" y="4" width="13" height="10" rx="1.2" />
+                <path d="M5.5 17h7" />
+                <rect x="14.5" y="9" width="7" height="11" rx="1.2" />
+              </svg>
+              Web &amp; Mobile Integrated
+            </span>
+            <span className="hidden sm:inline text-text-3/40">·</span>
+            <span className="inline-flex items-center gap-2 text-accent bg-accent/10 px-2.5 py-1 rounded">
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-60" />
+                <span className="relative inline-flex w-2 h-2 rounded-full bg-accent" />
+              </span>
+              Now accepting 3 clients
+            </span>
           </div>
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -182,12 +265,12 @@ export default function HomePage() {
 
       {/* MARQUEE */}
       <div className="relative border-y border-rule overflow-hidden bg-surface-1/50">
-        <div className="flex marquee whitespace-nowrap py-3.5">
+        <div className="flex marquee whitespace-nowrap py-5">
           {[...Array(3)].flatMap((_, n) =>
-            ["Built like enterprise software", "Priced for small business", "See it before you pay", "18+ years", "AWS · K8s · Datadog · Splunk", "BGC, Taguig"].map((t, i) => (
-              <span key={`${n}-${i}`} className="eyebrow flex items-center gap-6 px-6 !text-text-2">
-                <Diamond />
-                <span>{t}</span>
+            tickerItems.map((item, i) => (
+              <span key={`${n}-${i}`} className="flex items-center gap-3.5 px-9 font-mono text-[0.78rem] uppercase tracking-[0.14em] text-text-2">
+                <span className="text-accent shrink-0 flex items-center">{item.icon}</span>
+                <span>{item.text}</span>
               </span>
             )),
           )}
