@@ -546,8 +546,10 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  /* Counter-cancel the scene's rotateX (animated to match orb-drift). */
-  animation: orb-core-cancel 18s ease-in-out infinite;
+  /* Counter-cancel the scene's rotateX, plus glow pulse synced with bob. */
+  animation:
+    orb-core-cancel 18s ease-in-out infinite,
+    orb-core-glow 5.5s ease-in-out infinite;
   background:
     /* fine specular pinpoint */
     radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 9%),
@@ -555,17 +557,30 @@ body {
     radial-gradient(ellipse 32% 22% at 28% 26%, rgba(255, 255, 255, 0.55) 0%, transparent 70%),
     /* warm key light */
     radial-gradient(circle at 34% 30%, #ffeacc 0%, #ffc28a 18%, #ff9258 38%, #ff6a3d 58%, #c84418 82%, #7a2509 100%);
-  box-shadow:
-    inset -10px -12px 24px rgba(0, 0, 0, 0.6),
-    inset 3px 4px 8px rgba(255, 230, 200, 0.18),
-    0 0 70px rgba(255, 106, 61, 0.7),
-    0 0 160px rgba(255, 106, 61, 0.35);
 }
 
 @keyframes orb-core-cancel {
   0%   { transform: rotateX(-60deg) rotateZ(10deg); }
   50%  { transform: rotateX(-58deg) rotateZ(8deg); }
   100% { transform: rotateX(-60deg) rotateZ(10deg); }
+}
+
+/* Pulses the warm halo around the core — brightest at the top of the bob. */
+@keyframes orb-core-glow {
+  0%, 100% {
+    box-shadow:
+      inset -10px -12px 24px rgba(0, 0, 0, 0.6),
+      inset 3px 4px 8px rgba(255, 230, 200, 0.18),
+      0 0 40px rgba(255, 106, 61, 0.45),
+      0 0 90px rgba(255, 106, 61, 0.18);
+  }
+  50% {
+    box-shadow:
+      inset -10px -12px 24px rgba(0, 0, 0, 0.6),
+      inset 3px 4px 8px rgba(255, 230, 200, 0.22),
+      0 0 90px rgba(255, 168, 110, 0.95),
+      0 0 200px rgba(255, 106, 61, 0.55);
+  }
 }
 
 /* Atmospheric corona around the sphere — pulses with the bob (brightest at apex) */
