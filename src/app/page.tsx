@@ -1,4 +1,5 @@
 import { ContactForm } from "./contact-form";
+import { SolutionDepthEffect } from "./solution-depth";
 
 type Service = {
   code: string;
@@ -349,6 +350,7 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-6 pt-24 pb-12">
           <SectionHeader id="SVC-01" eyebrow="Practice" title={<>Built like enterprise software, <span className="text-text-3">priced for small business.</span></>} />
         </div>
+        <SolutionDepthEffect />
         <div className="solution-stack max-w-[1240px] mx-auto px-6 pb-24">
           {services.map((s, i) => (
             <article
