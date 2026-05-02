@@ -547,46 +547,55 @@ function Metric({ label, value, hint }: { label: string; value: string; hint: st
 }
 
 function Orbital() {
-  // Three concentric rings of segments + halo + glowing core.
-  // Pure CSS 3D, no canvas. Inspired by orbital / atomic compositions.
-  // Variety of "techy" shape kinds. Each segment in the rings picks a kind,
-  // so the orbit reads as machined/circuit-like fragments rather than a
-  // uniform crown of identical tiles.
-  type Kind = "slab" | "post" | "cube" | "pillar" | "fin" | "block" | "chip";
-  // All shapes are tangent panels: w (tangent to ring) >= h (radial thickness),
-  // with large d (vertical height) so the orbit reads as upright fence panels
-  // wrapping the sphere — no radial protrusions.
-  const shapes: Record<Kind, { w: number; h: number; d: number }> = {
-    slab:   { w: 78, h: 16, d: 84 },  // wide tall curved panel
-    post:   { w: 22, h: 16, d: 120 }, // tall narrow column
-    cube:   { w: 36, h: 22, d: 68 },  // tall block
-    pillar: { w: 30, h: 20, d: 130 }, // tallest pillar
-    fin:    { w: 56, h: 14, d: 100 }, // tall thin panel (was radial fin)
-    block:  { w: 60, h: 22, d: 92 },  // wide tall block
-    chip:   { w: 48, h: 12, d: 56 },  // shorter thin panel
+  // Three horizontal bands of curved arcs around a glowing sphere.
+  // Each arc is built from chord subdivisions — small flat tangent panels
+  // angled together to approximate a curved band. All units are cqi so the
+  // composition scales with the container.
+  //
+  //   y  = vertical center offset (scene Z, becomes screen-up after rotateX)
+  //   r  = radius from center
+  //   start/span = angular position and extent (deg)
+  //   height = vertical extent of the band
+  //   thickness = radial thickness
+  //   segments = chord count (higher = smoother curve)
+  type Arc = {
+    y: number;
+    r: number;
+    start: number;
+    span: number;
+    height: number;
+    thickness: number;
+    segments: number;
   };
+  type Ring = { cls: "outer" | "mid" | "inner"; arcs: Arc[] };
 
-  const rings: { cls: string; radius: number; count: number; kinds: Kind[]; jitter: readonly number[] }[] = [
+  const rings: Ring[] = [
     {
+      // BOTTOM — wide low-slung arcs at floor level, large radius
       cls: "outer",
-      radius: 44,
-      count: 14,
-      kinds: ["slab", "post", "block", "fin", "slab", "pillar", "post", "block", "slab", "fin", "pillar", "slab", "post", "block"],
-      jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0] as const,
+      arcs: [
+        { y: -16, r: 50, start:   8, span: 132, height: 14, thickness: 3.6, segments: 16 },
+        { y: -14, r: 50, start: 162, span:  62, height: 12, thickness: 3.6, segments: 8 },
+        { y: -17, r: 50, start: 244, span: 100, height: 16, thickness: 3.6, segments: 12 },
+      ],
     },
     {
+      // TOP — taller standing arcs at upper elevation, mid radius
       cls: "mid",
-      radius: 28,
-      count: 10,
-      kinds: ["cube", "post", "chip", "pillar", "post", "cube", "chip", "fin", "cube", "post"],
-      jitter: [1, 1, 0, 1, 1, 1, 0, 1, 1, 0] as const,
+      arcs: [
+        { y:  22, r: 36, start:  20, span:  58, height: 20, thickness: 3.0, segments: 8 },
+        { y:  24, r: 36, start: 100, span:  38, height: 17, thickness: 3.0, segments: 6 },
+        { y:  20, r: 36, start: 156, span:  68, height: 22, thickness: 3.0, segments: 9 },
+        { y:  23, r: 36, start: 248, span:  46, height: 18, thickness: 3.0, segments: 6 },
+      ],
     },
     {
+      // INNER — small arcs hugging the sphere at mid height
       cls: "inner",
-      radius: 16,
-      count: 8,
-      kinds: ["chip", "cube", "post", "chip", "fin", "post", "chip", "cube"],
-      jitter: [1, 0, 1, 1, 1, 0, 1, 1] as const,
+      arcs: [
+        { y:  2, r: 20, start:  18, span:  64, height: 8,  thickness: 2.4, segments: 8 },
+        { y:  2, r: 20, start: 218, span:  46, height: 7,  thickness: 2.4, segments: 6 },
+      ],
     },
   ];
 
@@ -597,32 +606,34 @@ function Orbital() {
       <div className="orbital-trail t1" aria-hidden />
 
       <div className="orbital-scene" aria-hidden>
-        {rings.map((r) => (
-          <div key={r.cls} className={`orbital-ring ${r.cls}`}>
-            {Array.from({ length: r.count }).map((_, i) => {
-              if (!r.jitter[i % r.jitter.length]) return null;
-              const angle = (360 / r.count) * i;
-              const kind = r.kinds[i % r.kinds.length];
-              const { w, h, d } = shapes[kind];
-              return (
-                <span
-                  key={i}
-                  className={`orbital-seg seg-${kind}`}
-                  style={{
-                    ["--a" as string]: `${angle}deg`,
-                    ["--r" as string]: `${r.radius}cqi`,
-                    ["--w" as string]: `${w}px`,
-                    ["--h" as string]: `${h}px`,
-                    ["--d" as string]: `${d}px`,
-                  }}
-                >
-                  <span className="face face-top" />
-                  <span className="face face-front" />
-                  <span className="face face-back" />
-                  <span className="face face-right" />
-                  <span className="face face-left" />
-                </span>
-              );
+        {rings.map((ring) => (
+          <div key={ring.cls} className={`orbital-ring ${ring.cls}`}>
+            {ring.arcs.flatMap((arc, ai) => {
+              const stepDeg = arc.span / arc.segments;
+              const chord = 2 * arc.r * Math.sin((stepDeg * Math.PI) / 360);
+              return Array.from({ length: arc.segments }).map((_, si) => {
+                const angle = arc.start + stepDeg * (si + 0.5);
+                return (
+                  <span
+                    key={`${ai}-${si}`}
+                    className="orbital-seg"
+                    style={{
+                      ["--a" as string]: `${angle}deg`,
+                      ["--r" as string]: `${arc.r}cqi`,
+                      ["--y" as string]: `${arc.y}cqi`,
+                      ["--w" as string]: `${chord.toFixed(3)}cqi`,
+                      ["--h" as string]: `${arc.thickness}cqi`,
+                      ["--d" as string]: `${arc.height}cqi`,
+                    }}
+                  >
+                    <span className="face face-top" />
+                    <span className="face face-front" />
+                    <span className="face face-back" />
+                    <span className="face face-right" />
+                    <span className="face face-left" />
+                  </span>
+                );
+              });
             })}
           </div>
         ))}

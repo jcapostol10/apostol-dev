@@ -424,7 +424,11 @@ body {
   height: 0;
   transform-style: preserve-3d;
   transform-origin: 50% 50%;
-  transform: translate3d(-50%, -50%, 0) rotateZ(var(--a)) translateY(calc(-1 * var(--r)));
+  transform:
+    translate3d(-50%, -50%, 0)
+    rotateZ(var(--a))
+    translateY(calc(-1 * var(--r)))
+    translateZ(var(--y, 0));
 }
 
 /* Faces of the 3D box. Each segment is W (arc) × H (radial) × D (depth). */
