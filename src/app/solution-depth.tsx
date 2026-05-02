@@ -12,24 +12,25 @@ export function SolutionDepthEffect() {
     // so prior cards smoothly fade/scale instead of jolting at the dock instant.
     const TRANSITION_PX = 280;
     // After all cards have stacked, scrolling further drives an "outro" that
-    // pushes every card back together so the whole stack recedes as a unit.
-    const OUTRO_TRANSITION_PX = 600;
-    const OUTRO_MAX_DEPTH = 3; // how much extra recede during outro
+    // both recedes every card AND translates the whole stack upward so the
+    // section visibly hands off to whatever comes next.
+    const OUTRO_TRANSITION_PX = 500;
+    const OUTRO_DEPTH = 1.6;     // extra depth added uniformly during outro
+    const OUTRO_TRANSLATE = 320; // px each card translates up at outro=1
     const stack = cards[0].closest(".solution-stack") as HTMLElement | null;
     const lastSticky = stickyTop(cards.length - 1);
     const lastCardHeight = cards[cards.length - 1].offsetHeight;
 
     const update = () => {
-      // Outro progress: 0 while the stack is still mid-section, ramps to
-      // OUTRO_MAX_DEPTH as the stack's bottom approaches the last card.
+      // Outro 0 → 1 as the stack's bottom approaches the last card's stuck top.
       let outro = 0;
       if (stack) {
         const stackBottom = stack.getBoundingClientRect().bottom;
-        // Start the outro a bit after the last card has fully docked so the
-        // user has a moment to see all 7 stacked before they begin receding.
         const exitStart = lastSticky + lastCardHeight + OUTRO_TRANSITION_PX;
-        const raw = (exitStart - stackBottom) / OUTRO_TRANSITION_PX;
-        outro = Math.max(0, Math.min(1, raw)) * OUTRO_MAX_DEPTH;
+        const exitEnd = lastSticky + lastCardHeight; // outro complete here
+        const span = exitStart - exitEnd;
+        const raw = (exitStart - stackBottom) / span;
+        outro = Math.max(0, Math.min(1, raw));
       }
 
       cards.forEach((card, i) => {
@@ -43,9 +44,11 @@ export function SolutionDepthEffect() {
           );
           depth += progress;
         }
-        // Apply outro to every card so they all recede together at section end.
-        depth += outro;
+        depth += outro * OUTRO_DEPTH;
         card.style.setProperty("--depth", depth.toFixed(3));
+        // Outro translates EVERY card up uniformly so the whole stack moves
+        // toward the next section together.
+        card.style.setProperty("--outro-y", `${(-outro * OUTRO_TRANSLATE).toFixed(1)}px`);
       });
     };
 

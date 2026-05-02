@@ -376,8 +376,9 @@ body {
 
 .solution-stack {
   position: relative;
-  /* Extra room so every card stays stuck through the outro recede phase. */
-  padding-bottom: 90vh;
+  /* Extra scroll distance after the last card docks — drives the outro
+     recede + translate so the whole stack visibly leaves toward BIO. */
+  padding-bottom: 60vh;
 }
 
 .solution-card {
@@ -391,7 +392,7 @@ body {
      so deeply stacked cards remain visible (don't fade to black). */
   --d: var(--depth, 0);
   transform:
-    translateY(calc(var(--d) * -5px))
+    translateY(calc(var(--d) * -5px + var(--outro-y, 0px)))
     scale(max(0.84, calc(1 - var(--d) * 0.018)));
   transform-origin: 50% 0;
   /* JS updates --depth every frame, so just a tiny smoothing transition. */
