@@ -376,7 +376,8 @@ body {
 
 .solution-stack {
   position: relative;
-  padding-bottom: 30vh;
+  /* Extra room so every card stays stuck through the outro recede phase. */
+  padding-bottom: 90vh;
 }
 
 .solution-card {
@@ -386,13 +387,18 @@ body {
   border-radius: 28px;
   /* Depth-driven push-back: --depth (0..N) is set by SolutionDepthEffect.
      Use scale + filter only — never opacity — so cards stay fully opaque
-     and prior card content can't bleed through. */
+     and prior card content can't bleed through. Clamp the per-layer impact
+     so deeply stacked cards remain visible (don't fade to black). */
   --d: var(--depth, 0);
-  transform: translateY(calc(var(--d) * -6px)) scale(calc(1 - var(--d) * 0.025));
+  transform:
+    translateY(calc(var(--d) * -5px))
+    scale(max(0.84, calc(1 - var(--d) * 0.018)));
   transform-origin: 50% 0;
   /* JS updates --depth every frame, so just a tiny smoothing transition. */
   transition: transform 0.12s linear, filter 0.12s linear;
-  filter: brightness(calc(1 - var(--d) * 0.18)) saturate(calc(1 - var(--d) * 0.15));
+  filter:
+    brightness(max(0.55, calc(1 - var(--d) * 0.075)))
+    saturate(max(0.5, calc(1 - var(--d) * 0.08)));
   /* Opaque so prior cards don't bleed through; warm-bg to differentiate from page bg */
   background:
     linear-gradient(180deg, #221814 0%, #110b08 100%);

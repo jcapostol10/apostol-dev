@@ -4,23 +4,30 @@ const page = await (await browser.newContext({ viewport: { width: 1280, height: 
 await page.goto("http://localhost:3001", { waitUntil: "networkidle" });
 await page.waitForTimeout(800);
 
-const info = await page.evaluate(() => {
-  const stack = document.querySelector(".solution-stack");
-  const cards = Array.from(document.querySelectorAll(".solution-card"));
-  return {
-    stackTop: stack.getBoundingClientRect().top + window.scrollY,
-    stackBottom: stack.getBoundingClientRect().bottom + window.scrollY,
-    cardCount: cards.length,
-    lastCardTop: cards[cards.length - 1].getBoundingClientRect().top + window.scrollY,
-  };
-});
-console.log(info);
+const cards = await page.evaluate(() =>
+  Array.from(document.querySelectorAll(".solution-card")).map((c) => ({
+    code: (c.querySelector(".tag")?.textContent || "").trim(),
+    naturalTop: c.getBoundingClientRect().top + window.scrollY,
+    height: c.getBoundingClientRect().height,
+  })),
+);
+console.log(cards);
 
-// Scroll to the position where the LAST card should just be sticking
-// (its natural top - 440px = scroll position where INT sticks)
-const target = info.lastCardTop - 440 + 200;
-await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), target);
-await page.waitForTimeout(500);
-await page.screenshot({ path: "scripts/screens/stack/all-stuck.png" });
-console.log("ok");
+// Scroll so the last card just docks at top:440
+const lastNatural = cards[cards.length - 1].naturalTop;
+const targetScroll = lastNatural - 440 + 50; // a bit past to confirm docked
+await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), targetScroll);
+await page.waitForTimeout(400);
+await page.screenshot({ path: "scripts/screens/stack/all-docked.png" });
+
+// Then scroll into outro
+await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), targetScroll + 300);
+await page.waitForTimeout(400);
+await page.screenshot({ path: "scripts/screens/stack/outro-1.png" });
+
+await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), targetScroll + 600);
+await page.waitForTimeout(400);
+await page.screenshot({ path: "scripts/screens/stack/outro-2.png" });
+
 await browser.close();
+console.log("ok");
