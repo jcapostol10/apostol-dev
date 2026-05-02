@@ -598,10 +598,11 @@ function Orbital() {
       ],
     },
     {
-      cls: "r1", // innermost — CCW
+      cls: "r1", // innermost — CCW; three equidistant arcs (120° apart)
       arcs: [
-        { y: 0, r: 16, start:  40, span:  80, height: 9, thickness: 2.2, segments: 8 },
-        { y: 0, r: 16, start: 210, span:  70, height: 9, thickness: 2.2, segments: 8 },
+        { y: 0, r: 16, start:  30, span: 75, height: 9, thickness: 2.2, segments: 8 },
+        { y: 0, r: 16, start: 150, span: 75, height: 9, thickness: 2.2, segments: 8 },
+        { y: 0, r: 16, start: 270, span: 75, height: 9, thickness: 2.2, segments: 8 },
       ],
     },
   ];
