@@ -382,7 +382,7 @@ body {
 .solution-card {
   position: sticky;
   top: calc(80px + var(--i, 0) * 60px);
-  margin-bottom: 85vh;
+  margin-bottom: 55vh;
   border-radius: 28px;
   /* Depth-driven push-back: --depth (0..N) is set by SolutionDepthEffect.
      Use scale + filter only — never opacity — so cards stay fully opaque
