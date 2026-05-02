@@ -568,14 +568,19 @@ body {
   100% { transform: rotateX(-60deg) rotateZ(10deg); }
 }
 
-/* Atmospheric corona around the sphere */
+/* Atmospheric corona around the sphere — pulses with the bob (brightest at apex) */
 .orbital-corona {
   position: absolute;
-  inset: -40%;
+  inset: -60%;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(255, 138, 77, 0.18) 0%, rgba(255, 106, 61, 0.06) 35%, transparent 65%);
+    radial-gradient(circle, rgba(255, 168, 110, 0.32) 0%, rgba(255, 106, 61, 0.12) 32%, transparent 65%);
   pointer-events: none;
+  animation: orb-corona-pulse 5.5s ease-in-out infinite;
+}
+@keyframes orb-corona-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.92); }
+  50%      { opacity: 1;    transform: scale(1.08); }
 }
 
 /* Faint orbit guide-rings (etched lines) */
