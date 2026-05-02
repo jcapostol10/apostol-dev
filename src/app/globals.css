@@ -384,13 +384,14 @@ body {
   top: calc(80px + var(--i, 0) * 60px);
   margin-bottom: 85vh;
   border-radius: 28px;
-  /* Depth-driven push-back: --depth (0..N) is set by SolutionDepthEffect */
+  /* Depth-driven push-back: --depth (0..N) is set by SolutionDepthEffect.
+     Use scale + filter only — never opacity — so cards stay fully opaque
+     and prior card content can't bleed through. */
   --d: var(--depth, 0);
-  transform: translateY(calc(var(--d) * -8px)) scale(calc(1 - var(--d) * 0.028));
+  transform: translateY(calc(var(--d) * -6px)) scale(calc(1 - var(--d) * 0.025));
   transform-origin: 50% 0;
-  opacity: calc(1 - var(--d) * 0.12);
-  transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
-  filter: brightness(calc(1 - var(--d) * 0.06));
+  transition: transform 0.45s ease, filter 0.45s ease;
+  filter: brightness(calc(1 - var(--d) * 0.18)) saturate(calc(1 - var(--d) * 0.15));
   /* Opaque so prior cards don't bleed through; warm-bg to differentiate from page bg */
   background:
     linear-gradient(180deg, #221814 0%, #110b08 100%);
