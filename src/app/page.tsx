@@ -569,32 +569,32 @@ function Orbital() {
   };
   type Ring = { cls: "outer" | "mid" | "inner"; arcs: Arc[] };
 
+  // All arcs share y=0 (same elevation) with varying radii — moderate tilt
+  // makes the back of each ring rise on screen while the front sits low,
+  // giving the cohesive concentric look from the reference.
   const rings: Ring[] = [
     {
-      // BOTTOM — wide low-slung arcs at floor level, large radius
       cls: "outer",
       arcs: [
-        { y: -16, r: 50, start:   8, span: 132, height: 14, thickness: 3.6, segments: 16 },
-        { y: -14, r: 50, start: 162, span:  62, height: 12, thickness: 3.6, segments: 8 },
-        { y: -17, r: 50, start: 244, span: 100, height: 16, thickness: 3.6, segments: 12 },
+        { y: 0, r: 48, start:   0, span: 110, height: 22, thickness: 3.4, segments: 12 },
+        { y: 0, r: 48, start: 130, span:  60, height: 20, thickness: 3.4, segments: 7 },
+        { y: 0, r: 48, start: 210, span:  90, height: 22, thickness: 3.4, segments: 10 },
+        { y: 0, r: 48, start: 320, span:  30, height: 18, thickness: 3.4, segments: 4 },
       ],
     },
     {
-      // TOP — taller standing arcs at upper elevation, mid radius
       cls: "mid",
       arcs: [
-        { y:  22, r: 36, start:  20, span:  58, height: 20, thickness: 3.0, segments: 8 },
-        { y:  24, r: 36, start: 100, span:  38, height: 17, thickness: 3.0, segments: 6 },
-        { y:  20, r: 36, start: 156, span:  68, height: 22, thickness: 3.0, segments: 9 },
-        { y:  23, r: 36, start: 248, span:  46, height: 18, thickness: 3.0, segments: 6 },
+        { y: 0, r: 32, start:  20, span:  90, height: 18, thickness: 3.0, segments: 10 },
+        { y: 0, r: 32, start: 130, span:  60, height: 17, thickness: 3.0, segments: 7 },
+        { y: 0, r: 32, start: 215, span:  85, height: 18, thickness: 3.0, segments: 9 },
       ],
     },
     {
-      // INNER — small arcs hugging the sphere at mid height
       cls: "inner",
       arcs: [
-        { y:  2, r: 20, start:  18, span:  64, height: 8,  thickness: 2.4, segments: 8 },
-        { y:  2, r: 20, start: 218, span:  46, height: 7,  thickness: 2.4, segments: 6 },
+        { y: 0, r: 18, start:  30, span:  70, height: 10, thickness: 2.4, segments: 8 },
+        { y: 0, r: 18, start: 200, span:  60, height: 10, thickness: 2.4, segments: 7 },
       ],
     },
   ];
