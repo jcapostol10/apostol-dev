@@ -576,34 +576,32 @@ function Orbital() {
     {
       cls: "r4", // outermost — CW
       arcs: [
-        { y: 0, r: 50, start:   0, span: 105, height: 22, thickness: 3.4, segments: 12 },
-        { y: 0, r: 50, start: 125, span:  62, height: 20, thickness: 3.4, segments: 7 },
-        { y: 0, r: 50, start: 205, span:  90, height: 22, thickness: 3.4, segments: 10 },
-        { y: 0, r: 50, start: 312, span:  32, height: 18, thickness: 3.4, segments: 4 },
+        { y: 0, r: 50, start:   0, span: 115, height: 22, thickness: 3.4, segments: 13 },
+        { y: 0, r: 50, start: 130, span:  70, height: 20, thickness: 3.4, segments: 8 },
+        { y: 0, r: 50, start: 215, span: 110, height: 22, thickness: 3.4, segments: 12 },
       ],
     },
     {
       cls: "r3", // CCW
       arcs: [
-        { y: 0, r: 38, start:  10, span:  85, height: 19, thickness: 3.0, segments: 10 },
-        { y: 0, r: 38, start: 115, span:  55, height: 17, thickness: 3.0, segments: 6 },
-        { y: 0, r: 38, start: 195, span:  95, height: 19, thickness: 3.0, segments: 10 },
-        { y: 0, r: 38, start: 305, span:  40, height: 16, thickness: 3.0, segments: 5 },
+        { y: 0, r: 38, start:  10, span:  90, height: 19, thickness: 3.0, segments: 10 },
+        { y: 0, r: 38, start: 115, span:  75, height: 17, thickness: 3.0, segments: 8 },
+        { y: 0, r: 38, start: 205, span: 120, height: 19, thickness: 3.0, segments: 13 },
       ],
     },
     {
       cls: "r2", // CW
       arcs: [
-        { y: 0, r: 26, start:  25, span:  75, height: 14, thickness: 2.6, segments: 8 },
-        { y: 0, r: 26, start: 130, span:  50, height: 13, thickness: 2.6, segments: 6 },
-        { y: 0, r: 26, start: 210, span:  80, height: 14, thickness: 2.6, segments: 8 },
+        { y: 0, r: 26, start:  25, span:  85, height: 14, thickness: 2.6, segments: 9 },
+        { y: 0, r: 26, start: 130, span:  60, height: 13, thickness: 2.6, segments: 7 },
+        { y: 0, r: 26, start: 210, span:  90, height: 14, thickness: 2.6, segments: 10 },
       ],
     },
     {
       cls: "r1", // innermost — CCW
       arcs: [
-        { y: 0, r: 16, start:  40, span:  70, height: 9, thickness: 2.2, segments: 7 },
-        { y: 0, r: 16, start: 210, span:  60, height: 9, thickness: 2.2, segments: 7 },
+        { y: 0, r: 16, start:  40, span:  80, height: 9, thickness: 2.2, segments: 8 },
+        { y: 0, r: 16, start: 210, span:  70, height: 9, thickness: 2.2, segments: 8 },
       ],
     },
   ];
