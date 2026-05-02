@@ -1,70 +1,133 @@
 import { ContactForm } from "./contact-form";
 
-const services = [
+type Service = {
+  code: string;
+  title: string;
+  headline: string;
+  rows: { label: string; detail: string }[];
+  icon: React.ReactNode;
+  visual: "ai" | "speed" | "convert" | "mobile" | "seo" | "reliability" | "integrate";
+};
+
+const services: Service[] = [
   {
-    code: "SEO-01",
-    title: "Search-engine performance",
-    body: "Schema markup, semantic HTML, and Core Web Vitals tuned to win local search in your category.",
-    icon: (
-      <>
-        <circle cx="11" cy="11" r="6.5" />
-        <path d="M16 16l4 4" />
-      </>
-    ),
-  },
-  {
-    code: "CVR-02",
-    title: "Conversion-led design",
-    body: "Every section earns its place. Friction-free forms and funnel patterns that turn visitors into customers.",
-    icon: (
-      <>
-        <path d="M3 17l5-5 4 4 7-9" />
-        <path d="M14 7h5v5" />
-      </>
-    ),
-  },
-  {
-    code: "PRF-03",
-    title: "Sub-second load times",
-    body: "Sub-1.5s loads on 4G. Edge-deployed, image-optimized, and lighthouse-audited before you ever see it.",
-    icon: (
-      <>
-        <path d="M12 3l-7 9h6l-1 9 8-11h-6l1-7z" />
-      </>
-    ),
-  },
-  {
-    code: "REL-04",
-    title: "Reliability by default",
-    body: "Uptime monitoring, automated backups, and incident response — borrowed from enterprise SRE playbooks.",
-    icon: (
-      <>
-        <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" />
-        <path d="M9 12l2 2 4-4" />
-      </>
-    ),
-  },
-  {
-    code: "MBL-05",
-    title: "Mobile-first delivery",
-    body: "Designed for the 80% of Filipino traffic on phones. Pixel-perfect from 320px to 4K.",
-    icon: (
-      <>
-        <rect x="7" y="3" width="10" height="18" rx="2" />
-        <path d="M11 18h2" />
-      </>
-    ),
-  },
-  {
-    code: "AI-06",
-    title: "AI-augmented features",
-    body: "Smart chatbots, AI search, content generation, and intelligent automation — same tech as the big players.",
+    code: "AI-01",
+    title: "AI-Augmented Features",
+    headline: "Ship the AI features your competitors keep talking about",
+    rows: [
+      { label: "Smart chatbots", detail: "Booking, FAQ, and lead-qualification flows tuned to your business." },
+      { label: "AI search & recommendations", detail: "Semantic search across products, content, and customer history." },
+      { label: "Content drafting", detail: "Image, copy, and email generation hooked into your CMS." },
+    ],
     icon: (
       <>
         <circle cx="12" cy="12" r="3" />
         <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" />
       </>
     ),
+    visual: "ai",
+  },
+  {
+    code: "PRF-02",
+    title: "Sub-Second Load Times",
+    headline: "Pages that open before your customer second-guesses",
+    rows: [
+      { label: "Edge-deployed CDN", detail: "Static assets served from the closest PoP — Manila, Singapore, or Hong Kong." },
+      { label: "Image optimization", detail: "AVIF/WebP, lazy hydration, and responsive sources baked in." },
+      { label: "<1.5s on 4G", detail: "Lighthouse-audited before launch and re-checked weekly in production." },
+    ],
+    icon: (
+      <>
+        <path d="M12 3l-7 9h6l-1 9 8-11h-6l1-7z" />
+      </>
+    ),
+    visual: "speed",
+  },
+  {
+    code: "CVR-03",
+    title: "Conversion-Led Design",
+    headline: "Every section earns its place on the page",
+    rows: [
+      { label: "Friction-free funnels", detail: "Multi-step forms, smart defaults, and progress restoration." },
+      { label: "Trust-building patterns", detail: "Social proof, transparent pricing, real-time availability." },
+      { label: "Hero variants ready", detail: "A/B-ready slots so you can iterate on copy without re-deploys." },
+    ],
+    icon: (
+      <>
+        <path d="M3 17l5-5 4 4 7-9" />
+        <path d="M14 7h5v5" />
+      </>
+    ),
+    visual: "convert",
+  },
+  {
+    code: "MBL-04",
+    title: "Mobile-First Delivery",
+    headline: "Built for the 80% of Filipino traffic on phones",
+    rows: [
+      { label: "Pixel-perfect 320px → 4K", detail: "Real-device tested across iPhone SE, mid-tier Android, and tablets." },
+      { label: "Touch-tuned interactions", detail: "44px tap targets, swipe gestures, no rage-clicks." },
+      { label: "Offline tolerant", detail: "Service-worker fallbacks for spotty mobile data on the road." },
+    ],
+    icon: (
+      <>
+        <rect x="7" y="3" width="10" height="18" rx="2" />
+        <path d="M11 18h2" />
+      </>
+    ),
+    visual: "mobile",
+  },
+  {
+    code: "SEO-05",
+    title: "Search-Engine Performance",
+    headline: "Win local search in your category",
+    rows: [
+      { label: "Schema & semantic HTML", detail: "Rich results for products, FAQ, reviews, and local business." },
+      { label: "Core Web Vitals tuned", detail: "LCP, CLS, INP audited against real-user metrics." },
+      { label: "Local-search optimized", detail: "Google Business Profile, citations, and neighborhood landing pages." },
+    ],
+    icon: (
+      <>
+        <circle cx="11" cy="11" r="6.5" />
+        <path d="M16 16l4 4" />
+      </>
+    ),
+    visual: "seo",
+  },
+  {
+    code: "REL-06",
+    title: "Reliability by Default",
+    headline: "Uptime that won't embarrass you in front of customers",
+    rows: [
+      { label: "24/7 monitoring", detail: "Synthetic checks, alerts to my phone before yours rings." },
+      { label: "Automated backups", detail: "Hourly snapshots, point-in-time recovery for the database." },
+      { label: "Enterprise SRE playbooks", detail: "Incident response patterns borrowed from Macquarie and Nuskin." },
+    ],
+    icon: (
+      <>
+        <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" />
+        <path d="M9 12l2 2 4-4" />
+      </>
+    ),
+    visual: "reliability",
+  },
+  {
+    code: "INT-07",
+    title: "Web & Mobile Integration",
+    headline: "One codebase, one database, one experience across platforms",
+    rows: [
+      { label: "Single codebase", detail: "React for web and React Native for iOS/Android — features ship to all three at once." },
+      { label: "Shared database & backend", detail: "One source of truth means orders, accounts, and content stay in sync everywhere." },
+      { label: "Seamless cross-device flows", detail: "Start a checkout on the phone, finish it on the laptop — state follows the user." },
+    ],
+    icon: (
+      <>
+        <rect x="3.5" y="4" width="11" height="9" rx="1.5" />
+        <path d="M6 16h6" />
+        <rect x="14" y="9" width="6.5" height="11" rx="1.4" />
+      </>
+    ),
+    visual: "integrate",
   },
 ];
 
@@ -283,25 +346,48 @@ export default function HomePage() {
 
       {/* SERVICES */}
       <section id="services" className="relative">
-        <div className="max-w-[1240px] mx-auto px-6 py-24">
+        <div className="max-w-[1240px] mx-auto px-6 pt-24 pb-12">
           <SectionHeader id="SVC-01" eyebrow="Practice" title={<>Built like enterprise software, <span className="text-text-3">priced for small business.</span></>} />
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-rule rounded-xl overflow-hidden border border-rule mt-12">
-            {services.map((s) => (
-              <article key={s.code} className="bg-bg p-7 hover:bg-surface-1 transition-colors group">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="text-accent">
-                    <svg viewBox="0 0 24 24" className="icon-line">
-                      {s.icon}
-                    </svg>
+        </div>
+        <div className="solution-stack max-w-[1240px] mx-auto px-6 pb-24">
+          {services.map((s, i) => (
+            <article
+              key={s.code}
+              className="solution-card"
+              style={{ ["--i" as string]: i, ["--total" as string]: services.length }}
+            >
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 p-8 lg:p-12">
+                <div className="lg:col-span-7 flex flex-col">
+                  <div className="flex items-center justify-between mb-7">
+                    <div className="flex items-center gap-3">
+                      <span className="text-accent">
+                        <svg viewBox="0 0 24 24" className="icon-line w-6 h-6">{s.icon}</svg>
+                      </span>
+                      <span className="tag !text-text-2">{s.title}</span>
+                    </div>
+                    <span className="tag !text-text-3">[{s.code}]</span>
                   </div>
-                  <span className="tag !text-text-3 group-hover:text-text-2 transition-colors">[{s.code}]</span>
+                  <h3 className="display text-3xl md:text-[44px] leading-[1.05] tracking-tight mb-9 text-warm-wash">
+                    {s.headline}
+                  </h3>
+                  <ul className="space-y-5 mt-auto">
+                    {s.rows.map((r) => (
+                      <li key={r.label} className="border-t border-rule pt-4 flex gap-6 items-start group/row">
+                        <div className="flex-1">
+                          <div className="font-medium text-text-1 mb-1">{r.label}</div>
+                          <div className="text-sm text-text-2 leading-relaxed">{r.detail}</div>
+                        </div>
+                        <span className="text-accent shrink-0 mt-1 transition-transform group-hover/row:translate-x-1" aria-hidden>↗</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="display text-2xl mb-2 tracking-tight">{s.title}</h3>
-                <p className="text-text-2 leading-relaxed text-sm">{s.body}</p>
-              </article>
-            ))}
-          </div>
+                <div className="lg:col-span-5 relative min-h-[220px] lg:min-h-[360px]">
+                  <SolutionVisual kind={s.visual} />
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -646,6 +732,112 @@ function Orbital() {
           <div className="orbital-core" />
         </div>
       </div>
+    </div>
+  );
+}
+
+function SolutionVisual({ kind }: { kind: Service["visual"] }) {
+  return (
+    <div className={`solution-visual sv-${kind}`} aria-hidden>
+      {kind === "ai" && (
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          <defs>
+            <radialGradient id="ai-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="rgba(255,138,77,0.55)" />
+              <stop offset="60%" stopColor="rgba(255,106,61,0.18)" />
+              <stop offset="100%" stopColor="rgba(255,106,61,0)" />
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="80" fill="url(#ai-glow)" />
+          {[0, 60, 120, 180, 240, 300].map((a) => {
+            const rad = (a * Math.PI) / 180;
+            const x = 100 + Math.cos(rad) * 64;
+            const y = 100 + Math.sin(rad) * 64;
+            return <line key={a} x1="100" y1="100" x2={x} y2={y} stroke="rgba(255,138,77,0.45)" strokeWidth="0.7" />;
+          })}
+          {[0, 60, 120, 180, 240, 300].map((a) => {
+            const rad = (a * Math.PI) / 180;
+            return <circle key={a} cx={100 + Math.cos(rad) * 64} cy={100 + Math.sin(rad) * 64} r="4" fill="rgba(255,184,107,0.85)" />;
+          })}
+          <circle cx="100" cy="100" r="14" fill="rgba(255,184,107,0.95)" />
+          <circle cx="100" cy="100" r="22" fill="none" stroke="rgba(255,138,77,0.55)" strokeWidth="1" />
+        </svg>
+      )}
+      {kind === "speed" && (
+        <svg viewBox="0 0 220 200" className="w-full h-full">
+          <path d="M20 160 Q 60 100, 120 80 T 200 30" stroke="rgba(255,138,77,0.85)" strokeWidth="2.5" fill="none" />
+          <path d="M20 160 Q 60 100, 120 80 T 200 30 L 200 180 L 20 180 Z" fill="rgba(255,106,61,0.12)" />
+          {[40, 75, 115, 155, 190].map((x, i) => (
+            <g key={x}>
+              <line x1={x} y1="160" x2={x} y2="180" stroke="rgba(255,255,255,0.08)" />
+              <text x={x} y="195" fontSize="9" fill="rgba(255,255,255,0.4)" textAnchor="middle" fontFamily="monospace">{[2.4, 1.8, 1.3, 0.9, 0.6][i]}s</text>
+            </g>
+          ))}
+          <circle cx="200" cy="30" r="6" fill="rgba(255,200,140,0.95)" />
+          <circle cx="200" cy="30" r="14" fill="none" stroke="rgba(255,138,77,0.45)" strokeWidth="1" />
+        </svg>
+      )}
+      {kind === "convert" && (
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          {[
+            { y: 30, w: 160, label: "Visit" },
+            { y: 70, w: 120, label: "Engage" },
+            { y: 110, w: 86, label: "Sign-up" },
+            { y: 150, w: 56, label: "Buy" },
+          ].map((b) => (
+            <g key={b.y}>
+              <rect x={(200 - b.w) / 2} y={b.y} width={b.w} height="22" rx="11" fill="rgba(255,138,77,0.18)" stroke="rgba(255,138,77,0.5)" />
+              <text x="100" y={b.y + 14} fontSize="10" fill="rgba(255,255,255,0.85)" textAnchor="middle" fontFamily="monospace">{b.label}</text>
+            </g>
+          ))}
+          <path d="M100 54 L 100 66 M96 62 L 100 66 L 104 62" stroke="rgba(255,138,77,0.7)" strokeWidth="1.4" fill="none" />
+          <path d="M100 94 L 100 106 M96 102 L 100 106 L 104 102" stroke="rgba(255,138,77,0.7)" strokeWidth="1.4" fill="none" />
+          <path d="M100 134 L 100 146 M96 142 L 100 146 L 104 142" stroke="rgba(255,138,77,0.7)" strokeWidth="1.4" fill="none" />
+        </svg>
+      )}
+      {kind === "mobile" && (
+        <svg viewBox="0 0 220 200" className="w-full h-full">
+          <rect x="80" y="20" width="60" height="120" rx="8" fill="rgba(20,20,20,0.7)" stroke="rgba(255,138,77,0.5)" />
+          <rect x="86" y="30" width="48" height="84" rx="3" fill="rgba(255,106,61,0.08)" />
+          <circle cx="110" cy="124" r="3" fill="rgba(255,138,77,0.4)" />
+          <rect x="20" y="60" width="40" height="80" rx="6" fill="rgba(20,20,20,0.5)" stroke="rgba(255,138,77,0.3)" />
+          <rect x="160" y="80" width="50" height="60" rx="6" fill="rgba(20,20,20,0.5)" stroke="rgba(255,138,77,0.3)" />
+          <text x="110" y="170" fontSize="9" fill="rgba(255,255,255,0.45)" textAnchor="middle" fontFamily="monospace">320 → 4K · pixel-perfect</text>
+        </svg>
+      )}
+      {kind === "seo" && (
+        <svg viewBox="0 0 220 200" className="w-full h-full">
+          <rect x="20" y="40" width="180" height="32" rx="6" fill="rgba(20,20,20,0.55)" stroke="rgba(255,138,77,0.4)" />
+          <circle cx="36" cy="56" r="6" fill="rgba(255,138,77,0.6)" />
+          <rect x="50" y="50" width="120" height="4" rx="2" fill="rgba(255,255,255,0.7)" />
+          <rect x="50" y="58" width="80" height="3" rx="1.5" fill="rgba(255,255,255,0.35)" />
+          <rect x="20" y="80" width="180" height="22" rx="4" fill="rgba(20,20,20,0.4)" stroke="rgba(255,138,77,0.25)" />
+          <rect x="20" y="108" width="180" height="22" rx="4" fill="rgba(20,20,20,0.4)" stroke="rgba(255,138,77,0.25)" />
+          <rect x="20" y="136" width="180" height="22" rx="4" fill="rgba(20,20,20,0.4)" stroke="rgba(255,138,77,0.25)" />
+          <text x="180" y="56" fontSize="10" fill="rgba(255,184,107,0.95)" textAnchor="end" fontFamily="monospace">#1</text>
+          <text x="22" y="172" fontSize="9" fill="rgba(255,255,255,0.5)" fontFamily="monospace">core web vitals · schema · local</text>
+        </svg>
+      )}
+      {kind === "reliability" && (
+        <svg viewBox="0 0 220 200" className="w-full h-full">
+          <path d="M110 20 L180 50 V100 C180 140 150 165 110 178 C70 165 40 140 40 100 V50 Z"
+            fill="rgba(255,106,61,0.08)" stroke="rgba(255,138,77,0.6)" strokeWidth="1.5" />
+          <path d="M85 100 L105 120 L140 80" stroke="rgba(255,184,107,1)" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <text x="110" y="155" fontSize="10" fill="rgba(255,255,255,0.65)" textAnchor="middle" fontFamily="monospace">99.95% uptime</text>
+        </svg>
+      )}
+      {kind === "integrate" && (
+        <svg viewBox="0 0 240 200" className="w-full h-full">
+          <rect x="20" y="40" width="80" height="60" rx="6" fill="rgba(20,20,20,0.6)" stroke="rgba(255,138,77,0.5)" />
+          <text x="60" y="74" fontSize="11" fill="rgba(255,255,255,0.85)" textAnchor="middle" fontFamily="monospace">web</text>
+          <rect x="140" y="40" width="60" height="100" rx="8" fill="rgba(20,20,20,0.6)" stroke="rgba(255,138,77,0.5)" />
+          <text x="170" y="94" fontSize="11" fill="rgba(255,255,255,0.85)" textAnchor="middle" fontFamily="monospace">mobile</text>
+          <rect x="80" y="150" width="80" height="34" rx="6" fill="rgba(255,106,61,0.18)" stroke="rgba(255,138,77,0.7)" />
+          <text x="120" y="171" fontSize="11" fill="rgba(255,200,140,1)" textAnchor="middle" fontFamily="monospace">shared core</text>
+          <path d="M60 100 L 100 150" stroke="rgba(255,138,77,0.6)" strokeWidth="1.4" />
+          <path d="M170 140 L 140 150" stroke="rgba(255,138,77,0.6)" strokeWidth="1.4" />
+        </svg>
+      )}
     </div>
   );
 }
