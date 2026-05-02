@@ -608,18 +608,6 @@ function Orbital() {
     },
   ];
 
-  // Lone upright pillars scattered between rings (decorative standing bars).
-  type Pillar = { ring: RingId; r: number; angle: number; w: number; h: number; d: number };
-  const pillars: Pillar[] = [
-    { ring: "r4", r: 44, angle: 118, w: 2.2, h: 3.2, d: 14 },
-    { ring: "r4", r: 44, angle: 197, w: 2.0, h: 3.0, d: 11 },
-    { ring: "r4", r: 44, angle: 305, w: 2.4, h: 3.4, d: 16 },
-    { ring: "r3", r: 32, angle:   8, w: 2.0, h: 2.8, d: 10 },
-    { ring: "r3", r: 32, angle: 116, w: 1.8, h: 2.6, d:  9 },
-    { ring: "r2", r: 21, angle:  60, w: 1.8, h: 2.4, d:  8 },
-    { ring: "r2", r: 21, angle: 250, w: 1.8, h: 2.4, d:  9 },
-    { ring: "r1", r: 11, angle: 130, w: 1.5, h: 1.9, d:  6 },
-  ];
 
   return (
     <div className="orbital">
@@ -657,28 +645,6 @@ function Orbital() {
                 );
               });
             })}
-            {pillars
-              .filter((p) => p.ring === ring.cls)
-              .map((p, pi) => (
-                <span
-                  key={`p-${pi}`}
-                  className="orbital-seg orbital-pillar"
-                  style={{
-                    ["--a" as string]: `${p.angle}deg`,
-                    ["--r" as string]: `${p.r}cqi`,
-                    ["--y" as string]: `0cqi`,
-                    ["--w" as string]: `${p.w}cqi`,
-                    ["--h" as string]: `${p.h}cqi`,
-                    ["--d" as string]: `${p.d}cqi`,
-                  }}
-                >
-                  <span className="face face-top" />
-                  <span className="face face-front" />
-                  <span className="face face-back" />
-                  <span className="face face-right" />
-                  <span className="face face-left" />
-                </span>
-              ))}
           </div>
         ))}
 
@@ -687,7 +653,6 @@ function Orbital() {
           <div className="orbital-corona" />
           <div className="orbital-core" />
         </div>
-        <div className="orbital-satellite" aria-hidden />
       </div>
     </div>
   );
