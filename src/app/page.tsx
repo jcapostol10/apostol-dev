@@ -356,17 +356,17 @@ export default function HomePage() {
               className="solution-card"
               style={{ ["--i" as string]: i, ["--total" as string]: services.length }}
             >
-              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 p-8 lg:p-12">
+              <div className="solution-card-header">
+                <div className="flex items-center gap-3">
+                  <span className="text-accent">
+                    <svg viewBox="0 0 24 24" className="icon-line w-5 h-5">{s.icon}</svg>
+                  </span>
+                  <span className="tag !text-text-1 !text-[0.78rem]">{s.title}</span>
+                </div>
+                <span className="tag !text-text-3">[{s.code}]</span>
+              </div>
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 p-7 lg:p-12">
                 <div className="lg:col-span-7 flex flex-col">
-                  <div className="flex items-center justify-between mb-7">
-                    <div className="flex items-center gap-3">
-                      <span className="text-accent">
-                        <svg viewBox="0 0 24 24" className="icon-line w-6 h-6">{s.icon}</svg>
-                      </span>
-                      <span className="tag !text-text-2">{s.title}</span>
-                    </div>
-                    <span className="tag !text-text-3">[{s.code}]</span>
-                  </div>
                   <h3 className="display text-3xl md:text-[44px] leading-[1.05] tracking-tight mb-9 text-warm-wash">
                     {s.headline}
                   </h3>
