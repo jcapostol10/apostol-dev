@@ -568,21 +568,21 @@ body {
 /* Pulses the warm halo around the core — brightest at the top of the bob. */
 @keyframes orb-core-glow {
   0%, 100% {
-    filter: brightness(0.85) saturate(1);
+    filter: brightness(0.9) saturate(1.02);
     box-shadow:
       inset -10px -12px 24px rgba(0, 0, 0, 0.6),
-      inset 3px 4px 8px rgba(255, 230, 200, 0.18),
-      0 0 50px rgba(255, 138, 77, 0.5),
-      0 0 110px rgba(255, 106, 61, 0.22);
+      inset 3px 4px 8px rgba(255, 230, 200, 0.2),
+      0 0 65px rgba(255, 138, 77, 0.62),
+      0 0 140px rgba(255, 106, 61, 0.28);
   }
   50% {
-    filter: brightness(1.12) saturate(1.06);
+    filter: brightness(1.22) saturate(1.1);
     box-shadow:
-      inset -9px -11px 23px rgba(0, 0, 0, 0.55),
-      inset 4px 5px 9px rgba(255, 240, 215, 0.24),
-      0 0 80px rgba(255, 180, 120, 0.6),
-      0 0 170px rgba(255, 138, 77, 0.45),
-      0 0 280px rgba(255, 106, 61, 0.22);
+      inset -9px -11px 23px rgba(0, 0, 0, 0.5),
+      inset 4px 5px 9px rgba(255, 240, 215, 0.3),
+      0 0 100px rgba(255, 190, 130, 0.75),
+      0 0 210px rgba(255, 138, 77, 0.55),
+      0 0 340px rgba(255, 106, 61, 0.28);
   }
 }
 
