@@ -599,6 +599,19 @@ function Orbital() {
     },
   ];
 
+  // Lone upright pillars scattered between arcs (decorative standing bars).
+  type Pillar = { ring: "outer" | "mid" | "inner"; r: number; angle: number; w: number; h: number; d: number };
+  const pillars: Pillar[] = [
+    { ring: "outer", r: 40, angle: 118, w: 2.2, h: 3.2, d: 14 },
+    { ring: "outer", r: 40, angle: 197, w: 2.0, h: 3.0, d: 11 },
+    { ring: "outer", r: 40, angle: 305, w: 2.4, h: 3.4, d: 16 },
+    { ring: "mid",   r: 25, angle:   8, w: 2.0, h: 2.8, d: 10 },
+    { ring: "mid",   r: 25, angle: 116, w: 1.8, h: 2.6, d:  9 },
+    { ring: "mid",   r: 25, angle: 308, w: 2.0, h: 2.8, d: 12 },
+    { ring: "inner", r: 12, angle: 105, w: 1.6, h: 2.0, d:  6 },
+    { ring: "inner", r: 12, angle: 270, w: 1.6, h: 2.0, d:  7 },
+  ];
+
   return (
     <div className="orbital">
       <div className="orbital-trail t3" aria-hidden />
@@ -635,6 +648,28 @@ function Orbital() {
                 );
               });
             })}
+            {pillars
+              .filter((p) => p.ring === ring.cls)
+              .map((p, pi) => (
+                <span
+                  key={`p-${pi}`}
+                  className="orbital-seg orbital-pillar"
+                  style={{
+                    ["--a" as string]: `${p.angle}deg`,
+                    ["--r" as string]: `${p.r}cqi`,
+                    ["--y" as string]: `0cqi`,
+                    ["--w" as string]: `${p.w}cqi`,
+                    ["--h" as string]: `${p.h}cqi`,
+                    ["--d" as string]: `${p.d}cqi`,
+                  }}
+                >
+                  <span className="face face-top" />
+                  <span className="face face-front" />
+                  <span className="face face-back" />
+                  <span className="face face-right" />
+                  <span className="face face-left" />
+                </span>
+              ))}
           </div>
         ))}
 
@@ -643,6 +678,7 @@ function Orbital() {
           <div className="orbital-corona" />
           <div className="orbital-core" />
         </div>
+        <div className="orbital-satellite" aria-hidden />
       </div>
     </div>
   );

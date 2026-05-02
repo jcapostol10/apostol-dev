@@ -563,6 +563,27 @@ body {
   100% { transform: rotateX(-32deg) rotateZ(12deg); }
 }
 
+/* Floating satellite — small bright dot drifting outside the main scene. */
+.orbital-satellite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.6%;
+  height: 1.6%;
+  margin: -0.8% 0 0 -0.8%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe6c8 0%, #ffb37a 45%, #ff6a3d 100%);
+  box-shadow:
+    0 0 14px rgba(255, 138, 77, 0.7),
+    0 0 36px rgba(255, 106, 61, 0.35);
+  transform: translate3d(44cqi, -18cqi, 20cqi);
+  animation: orb-satellite 14s ease-in-out infinite;
+}
+@keyframes orb-satellite {
+  0%, 100% { transform: translate3d(44cqi, -18cqi, 20cqi); }
+  50%      { transform: translate3d(40cqi, -22cqi, 24cqi); }
+}
+
 /* Atmospheric corona around the sphere */
 .orbital-corona {
   position: absolute;
