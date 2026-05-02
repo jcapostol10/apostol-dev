@@ -390,7 +390,8 @@ body {
   --d: var(--depth, 0);
   transform: translateY(calc(var(--d) * -6px)) scale(calc(1 - var(--d) * 0.025));
   transform-origin: 50% 0;
-  transition: transform 0.45s ease, filter 0.45s ease;
+  /* JS updates --depth every frame, so just a tiny smoothing transition. */
+  transition: transform 0.12s linear, filter 0.12s linear;
   filter: brightness(calc(1 - var(--d) * 0.18)) saturate(calc(1 - var(--d) * 0.15));
   /* Opaque so prior cards don't bleed through; warm-bg to differentiate from page bg */
   background:

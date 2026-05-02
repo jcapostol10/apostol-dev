@@ -8,14 +8,24 @@ export function SolutionDepthEffect() {
     if (!cards.length) return;
     const stickyTop = (i: number) => 80 + i * 60;
 
+    // The recede starts this many pixels before the next card actually docks,
+    // so prior cards smoothly fade/scale instead of jolting at the dock instant.
+    const TRANSITION_PX = 280;
+
     const update = () => {
       cards.forEach((card, i) => {
         let depth = 0;
         for (let j = i + 1; j < cards.length; j++) {
           const rect = cards[j].getBoundingClientRect();
-          if (rect.top <= stickyTop(j) + 1) depth++;
+          const target = stickyTop(j);
+          // 0 when card j is still TRANSITION_PX below target, 1 when stuck.
+          const progress = Math.max(
+            0,
+            Math.min(1, (target + TRANSITION_PX - rect.top) / TRANSITION_PX),
+          );
+          depth += progress;
         }
-        card.style.setProperty("--depth", String(depth));
+        card.style.setProperty("--depth", depth.toFixed(3));
       });
     };
 
