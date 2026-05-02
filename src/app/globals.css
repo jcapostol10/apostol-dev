@@ -535,7 +535,11 @@ body {
   height: 10%;
   margin: -5% 0 0 -5%;
   transform-style: preserve-3d;
-  transform: translateZ(48px);
+  animation: orb-sphere-bob 5.5s ease-in-out infinite;
+}
+@keyframes orb-sphere-bob {
+  0%, 100% { transform: translateZ(46px); }
+  50%      { transform: translateZ(54px); }
 }
 
 .orbital-core {
