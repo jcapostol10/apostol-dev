@@ -401,9 +401,10 @@ body {
   inset: 0;
   transform-style: preserve-3d;
 }
-.orbital-ring.outer { animation: orb-spin 60s linear infinite; }
-.orbital-ring.mid   { animation: orb-spin 60s linear infinite; }
-.orbital-ring.inner { animation: orb-spin 60s linear infinite; }
+.orbital-ring.r4 { animation: orb-spin     70s linear infinite; } /* outermost — CW */
+.orbital-ring.r3 { animation: orb-spin-rev 60s linear infinite; } /* 3rd — CCW */
+.orbital-ring.r2 { animation: orb-spin     50s linear infinite; } /* 2nd — CW */
+.orbital-ring.r1 { animation: orb-spin-rev 40s linear infinite; } /* innermost — CCW */
 
 @keyframes orb-spin {
   from { transform: rotateZ(0); }

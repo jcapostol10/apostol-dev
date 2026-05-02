@@ -567,49 +567,58 @@ function Orbital() {
     thickness: number;
     segments: number;
   };
-  type Ring = { cls: "outer" | "mid" | "inner"; arcs: Arc[] };
+  type RingId = "r4" | "r3" | "r2" | "r1";
+  type Ring = { cls: RingId; arcs: Arc[] };
 
-  // All arcs share y=0 (same elevation) with varying radii — moderate tilt
-  // makes the back of each ring rise on screen while the front sits low,
-  // giving the cohesive concentric look from the reference.
+  // Four concentric orbits. Rotation directions alternate CW/CCW from
+  // outermost (r4) to innermost (r1) — wired up via CSS animation.
   const rings: Ring[] = [
     {
-      cls: "outer",
+      cls: "r4", // outermost — CW
       arcs: [
-        { y: 0, r: 48, start:   0, span: 110, height: 22, thickness: 3.4, segments: 12 },
-        { y: 0, r: 48, start: 130, span:  60, height: 20, thickness: 3.4, segments: 7 },
-        { y: 0, r: 48, start: 210, span:  90, height: 22, thickness: 3.4, segments: 10 },
-        { y: 0, r: 48, start: 320, span:  30, height: 18, thickness: 3.4, segments: 4 },
+        { y: 0, r: 50, start:   0, span: 105, height: 22, thickness: 3.4, segments: 12 },
+        { y: 0, r: 50, start: 125, span:  62, height: 20, thickness: 3.4, segments: 7 },
+        { y: 0, r: 50, start: 205, span:  90, height: 22, thickness: 3.4, segments: 10 },
+        { y: 0, r: 50, start: 312, span:  32, height: 18, thickness: 3.4, segments: 4 },
       ],
     },
     {
-      cls: "mid",
+      cls: "r3", // CCW
       arcs: [
-        { y: 0, r: 32, start:  20, span:  90, height: 18, thickness: 3.0, segments: 10 },
-        { y: 0, r: 32, start: 130, span:  60, height: 17, thickness: 3.0, segments: 7 },
-        { y: 0, r: 32, start: 215, span:  85, height: 18, thickness: 3.0, segments: 9 },
+        { y: 0, r: 38, start:  10, span:  85, height: 19, thickness: 3.0, segments: 10 },
+        { y: 0, r: 38, start: 115, span:  55, height: 17, thickness: 3.0, segments: 6 },
+        { y: 0, r: 38, start: 195, span:  95, height: 19, thickness: 3.0, segments: 10 },
+        { y: 0, r: 38, start: 305, span:  40, height: 16, thickness: 3.0, segments: 5 },
       ],
     },
     {
-      cls: "inner",
+      cls: "r2", // CW
       arcs: [
-        { y: 0, r: 18, start:  30, span:  70, height: 10, thickness: 2.4, segments: 8 },
-        { y: 0, r: 18, start: 200, span:  60, height: 10, thickness: 2.4, segments: 7 },
+        { y: 0, r: 26, start:  25, span:  75, height: 14, thickness: 2.6, segments: 8 },
+        { y: 0, r: 26, start: 130, span:  50, height: 13, thickness: 2.6, segments: 6 },
+        { y: 0, r: 26, start: 210, span:  80, height: 14, thickness: 2.6, segments: 8 },
+      ],
+    },
+    {
+      cls: "r1", // innermost — CCW
+      arcs: [
+        { y: 0, r: 16, start:  40, span:  70, height: 9, thickness: 2.2, segments: 7 },
+        { y: 0, r: 16, start: 210, span:  60, height: 9, thickness: 2.2, segments: 7 },
       ],
     },
   ];
 
-  // Lone upright pillars scattered between arcs (decorative standing bars).
-  type Pillar = { ring: "outer" | "mid" | "inner"; r: number; angle: number; w: number; h: number; d: number };
+  // Lone upright pillars scattered between rings (decorative standing bars).
+  type Pillar = { ring: RingId; r: number; angle: number; w: number; h: number; d: number };
   const pillars: Pillar[] = [
-    { ring: "outer", r: 40, angle: 118, w: 2.2, h: 3.2, d: 14 },
-    { ring: "outer", r: 40, angle: 197, w: 2.0, h: 3.0, d: 11 },
-    { ring: "outer", r: 40, angle: 305, w: 2.4, h: 3.4, d: 16 },
-    { ring: "mid",   r: 25, angle:   8, w: 2.0, h: 2.8, d: 10 },
-    { ring: "mid",   r: 25, angle: 116, w: 1.8, h: 2.6, d:  9 },
-    { ring: "mid",   r: 25, angle: 308, w: 2.0, h: 2.8, d: 12 },
-    { ring: "inner", r: 12, angle: 105, w: 1.6, h: 2.0, d:  6 },
-    { ring: "inner", r: 12, angle: 270, w: 1.6, h: 2.0, d:  7 },
+    { ring: "r4", r: 44, angle: 118, w: 2.2, h: 3.2, d: 14 },
+    { ring: "r4", r: 44, angle: 197, w: 2.0, h: 3.0, d: 11 },
+    { ring: "r4", r: 44, angle: 305, w: 2.4, h: 3.4, d: 16 },
+    { ring: "r3", r: 32, angle:   8, w: 2.0, h: 2.8, d: 10 },
+    { ring: "r3", r: 32, angle: 116, w: 1.8, h: 2.6, d:  9 },
+    { ring: "r2", r: 21, angle:  60, w: 1.8, h: 2.4, d:  8 },
+    { ring: "r2", r: 21, angle: 250, w: 1.8, h: 2.4, d:  9 },
+    { ring: "r1", r: 11, angle: 130, w: 1.5, h: 1.9, d:  6 },
   ];
 
   return (
