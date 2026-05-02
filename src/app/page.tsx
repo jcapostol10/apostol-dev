@@ -574,11 +574,12 @@ function Orbital() {
   // outermost (r4) to innermost (r1) — wired up via CSS animation.
   const rings: Ring[] = [
     {
-      cls: "r4", // outermost — CW
+      cls: "r4", // outermost — CW; four equidistant arcs (90° apart)
       arcs: [
-        { y: 0, r: 50, start:   0, span: 115, height: 22, thickness: 3.4, segments: 13 },
-        { y: 0, r: 50, start: 130, span:  70, height: 20, thickness: 3.4, segments: 8 },
-        { y: 0, r: 50, start: 215, span: 110, height: 22, thickness: 3.4, segments: 12 },
+        { y: 0, r: 50, start:  10, span: 70, height: 22, thickness: 3.4, segments: 8 },
+        { y: 0, r: 50, start: 100, span: 70, height: 22, thickness: 3.4, segments: 8 },
+        { y: 0, r: 50, start: 190, span: 70, height: 22, thickness: 3.4, segments: 8 },
+        { y: 0, r: 50, start: 280, span: 70, height: 22, thickness: 3.4, segments: 8 },
       ],
     },
     {
