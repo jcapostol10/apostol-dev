@@ -376,9 +376,10 @@ body {
 
 .solution-stack {
   position: relative;
-  /* Extra scroll distance after the last card docks — drives the outro
-     recede + translate so the whole stack visibly leaves toward BIO. */
-  padding-bottom: 60vh;
+  /* Generous bottom padding ensures every card stays stuck through the
+     entire outro lift so they translate up uniformly together — no card
+     can naturally unstick (and decouple) until they're already off-screen. */
+  padding-bottom: 110vh;
 }
 
 .solution-card {

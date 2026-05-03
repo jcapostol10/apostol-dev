@@ -16,7 +16,7 @@ export function SolutionDepthEffect() {
     // naturally unstick. Result: all 7 cards leave together as one unit.
     const OUTRO_LINGER_PX = 200; // buffer above natural unstick before outro starts
     const OUTRO_SCROLL_PX = 500; // scroll distance over which outro plays
-    const OUTRO_TRANSLATE = 1100; // px translate at outro=1 — pushes stack past viewport top
+    const OUTRO_TRANSLATE = 800; // px translate at outro=1 — pushes stack past viewport top
     const stack = cards[0].closest(".solution-stack") as HTMLElement | null;
     const lastSticky = stickyTop(cards.length - 1);
     const lastCardHeight = cards[cards.length - 1].offsetHeight;
