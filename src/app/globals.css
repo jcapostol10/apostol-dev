@@ -376,10 +376,14 @@ body {
 
 .solution-stack {
   position: relative;
-  /* Generous bottom padding ensures every card stays stuck through the
-     entire outro lift so they translate up uniformly together — no card
-     can naturally unstick (and decouple) until they're already off-screen. */
-  padding-bottom: 110vh;
+  /* Just enough room below the last card for the outro lift to complete
+     before any natural unsticking — keeps the gap to BIO compact. */
+  padding-bottom: 60vh;
+}
+
+/* Last card needs no inter-card margin since nothing follows it. */
+.solution-card:last-of-type {
+  margin-bottom: 0;
 }
 
 .solution-card {
