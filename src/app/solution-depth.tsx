@@ -8,29 +8,34 @@ export function SolutionDepthEffect() {
     if (!cards.length) return;
     const stickyTop = (i: number) => 80 + i * 60;
 
-    // The recede starts this many pixels before the next card actually docks,
-    // so prior cards smoothly fade/scale instead of jolting at the dock instant.
     const TRANSITION_PX = 280;
-    // Outro window: starts well above the natural sticky-exit zone so the
-    // whole stack uniformly translates up BEFORE any individual card would
-    // naturally unstick. Result: all 7 cards leave together as one unit.
-    const OUTRO_LINGER_PX = 200; // buffer above natural unstick before outro starts
-    const OUTRO_SCROLL_PX = 500; // scroll distance over which outro plays
-    const OUTRO_TRANSLATE = 800; // px translate at outro=1 — pushes stack past viewport top
-    const stack = cards[0].closest(".solution-stack") as HTMLElement | null;
-    const lastSticky = stickyTop(cards.length - 1);
-    const lastCardHeight = cards[cards.length - 1].offsetHeight;
-    const naturalUnstickAt = lastSticky + lastCardHeight; // viewport-y of stack-bottom when INT unsticks
+    const OUTRO_LINGER_PX = 250; // wait this many px after dock before outro starts
+    const OUTRO_SCROLL_PX = 500;
+    const OUTRO_TRANSLATE = 900;
+    const lastCard = cards[cards.length - 1];
+    const lastStickyTop = stickyTop(cards.length - 1);
+
+    // Natural-flow page-y of the last card (independent of its sticky state).
+    const pageOffsetTop = (el: HTMLElement | null) => {
+      let y = 0;
+      let cur: HTMLElement | null = el;
+      while (cur) {
+        y += cur.offsetTop;
+        cur = cur.offsetParent as HTMLElement | null;
+      }
+      return y;
+    };
+    const lastNaturalTop = pageOffsetTop(lastCard);
 
     const update = () => {
-      let outro = 0;
-      if (stack) {
-        const stackBottom = stack.getBoundingClientRect().bottom;
-        const exitEnd = naturalUnstickAt + OUTRO_LINGER_PX;       // finish outro here
-        const exitStart = exitEnd + OUTRO_SCROLL_PX;              // start outro here
-        const raw = (exitStart - stackBottom) / OUTRO_SCROLL_PX;
-        outro = Math.max(0, Math.min(1, raw));
-      }
+      // Scroll position where the LAST card has just docked at its sticky top.
+      const dockedScroll = lastNaturalTop - lastStickyTop;
+      const outroStart = dockedScroll + OUTRO_LINGER_PX;
+      const outroEnd = outroStart + OUTRO_SCROLL_PX;
+      const outro = Math.max(
+        0,
+        Math.min(1, (window.scrollY - outroStart) / (outroEnd - outroStart)),
+      );
 
       cards.forEach((card, i) => {
         let depth = 0;
@@ -44,8 +49,6 @@ export function SolutionDepthEffect() {
           depth += progress;
         }
         card.style.setProperty("--depth", depth.toFixed(3));
-        // Uniform translation across every card so the whole stack lifts off
-        // together — independent of per-card depth.
         card.style.setProperty("--outro-y", `${(-outro * OUTRO_TRANSLATE).toFixed(1)}px`);
       });
     };
