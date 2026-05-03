@@ -9,9 +9,9 @@ export function SolutionDepthEffect() {
     const stickyTop = (i: number) => 80 + i * 60;
 
     const TRANSITION_PX = 280;
-    const OUTRO_LINGER_PX = 250; // wait this many px after dock before outro starts
-    const OUTRO_SCROLL_PX = 500;
-    const OUTRO_TRANSLATE = 900;
+    const OUTRO_LINGER_PX = 0;   // outro starts the instant the last card docks
+    const OUTRO_SCROLL_PX = 600;
+    const OUTRO_TRANSLATE = 1200; // overshoot — guarantees stack is fully off-screen
     const lastCard = cards[cards.length - 1];
     const lastStickyTop = stickyTop(cards.length - 1);
 

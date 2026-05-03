@@ -392,8 +392,10 @@ body {
      and prior card content can't bleed through. Clamp the per-layer impact
      so deeply stacked cards remain visible (don't fade to black). */
   --d: var(--depth, 0);
+  /* Per-depth lift is intentionally subtle (-3px) so prior cards stay
+     visibly stacked. The outro provides the dramatic uniform lift. */
   transform:
-    translateY(calc(var(--d) * -5px + var(--outro-y, 0px)))
+    translateY(calc(var(--d) * -3px + var(--outro-y, 0px)))
     scale(max(0.84, calc(1 - var(--d) * 0.018)));
   transform-origin: 50% 0;
   /* JS updates --depth every frame, so just a tiny smoothing transition. */
