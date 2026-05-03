@@ -378,12 +378,7 @@ body {
   position: relative;
   /* Just enough room below the last card for the outro lift to complete
      before any natural unsticking — keeps the gap to BIO compact. */
-  padding-bottom: 60vh;
-}
-
-/* Last card needs no inter-card margin since nothing follows it. */
-.solution-card:last-of-type {
-  margin-bottom: 0;
+  padding-bottom: 30vh;
 }
 
 .solution-card {
