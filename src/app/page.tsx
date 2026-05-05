@@ -351,7 +351,7 @@ export default function HomePage() {
           <SectionHeader id="SVC-01" eyebrow="Practice" title={<>Built like enterprise software, <span className="text-text-3">priced for small business.</span></>} />
         </div>
         <SolutionDepthEffect />
-        <div className="solution-stack max-w-[1240px] mx-auto px-6 pb-24">
+        <div className="solution-stack max-w-[1240px] mx-auto px-6">
           {services.map((s, i) => (
             <article
               key={s.code}
