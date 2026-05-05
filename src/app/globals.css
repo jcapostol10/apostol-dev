@@ -376,9 +376,9 @@ body {
 
 .solution-stack {
   position: relative;
-  /* Just enough room below the last card for the outro lift to complete
-     before any natural unsticking — keeps the gap to BIO compact. */
-  padding-bottom: 30vh;
+  /* Last card already contributes 55vh of margin-bottom which gives the
+     outro plenty of buffer; just a small extra cushion here. */
+  padding-bottom: 5vh;
 }
 
 .solution-card {
