@@ -382,10 +382,12 @@ body {
 }
 
 .solution-card {
-  position: sticky;
-  top: calc(80px + var(--i, 0) * 60px);
+  /* Positioning is driven by SolutionDepthEffect via translateY transforms —
+     CSS position:sticky was unreliable for the last card in this layout. */
+  position: relative;
   margin-bottom: 55vh;
   border-radius: 28px;
+  will-change: transform;
   /* Depth-driven push-back: --depth (0..N) is set by SolutionDepthEffect.
      Use scale + filter only — never opacity — so cards stay fully opaque
      and prior card content can't bleed through. Clamp the per-layer impact
