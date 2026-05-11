@@ -10,7 +10,7 @@ export function SolutionDepthEffect() {
 
     const TRANSITION_PX = 280;
     const OUTRO_LINGER_PX = 0;
-    const OUTRO_SCROLL_PX = 400;
+    const OUTRO_SCROLL_PX = 300;
     const OUTRO_TRANSLATE = 900;
     const lastCard = cards[cards.length - 1];
     const lastStickyTop = stickyTop(cards.length - 1);
@@ -26,6 +26,8 @@ export function SolutionDepthEffect() {
       return y;
     };
     const lastNaturalTop = pageOffsetTop(lastCard);
+    // eslint-disable-next-line no-console
+    console.log("[SolutionDepthEffect] lastNaturalTop", lastNaturalTop, "lastSticky", lastStickyTop, "docked", lastNaturalTop - lastStickyTop);
 
     const update = () => {
       // Scroll position where the LAST card has just docked at its sticky top.
@@ -49,8 +51,28 @@ export function SolutionDepthEffect() {
           depth += progress;
         }
         card.style.setProperty("--depth", depth.toFixed(3));
-        card.style.setProperty("--outro-y", `${(-outro * OUTRO_TRANSLATE).toFixed(1)}px`);
+        const brightness = Math.max(0.55, 1 - depth * 0.075);
+        const saturate = Math.max(0.5, 1 - depth * 0.08);
+        card.style.filter = `brightness(${brightness.toFixed(3)}) saturate(${saturate.toFixed(3)})`;
       });
+
+      // Manual sticky fallback for the LAST card — CSS sticky doesn't reliably
+      // engage on it in this layout. If its natural top has scrolled above its
+      // sticky_top, apply a translateY that pins it there.
+      const lastRect = lastCard.getBoundingClientRect();
+      // Strip any existing translateY we previously set so rect reflects natural
+      const currentTransform = lastCard.style.transform;
+      let prevTy = 0;
+      const m = /translateY\(([-\d.]+)px\)/.exec(currentTransform);
+      if (m) prevTy = parseFloat(m[1]);
+      const naturalRectTop = lastRect.top - prevTy;
+      if (naturalRectTop < lastStickyTop) {
+        const ty = lastStickyTop - naturalRectTop;
+        lastCard.style.transform = `translateY(${ty.toFixed(1)}px)`;
+      } else {
+        lastCard.style.transform = "";
+      }
+      void outro;
     };
 
     let frame = 0;

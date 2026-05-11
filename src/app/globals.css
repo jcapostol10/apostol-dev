@@ -376,9 +376,9 @@ body {
 
 .solution-stack {
   position: relative;
-  /* Last card already contributes 55vh of margin-bottom which gives the
-     outro plenty of buffer; just a small extra cushion here. */
-  padding-bottom: 5vh;
+  /* Enough room below the last card so the outro lift completes BEFORE
+     INT-07 would naturally unstick (parent's bottom < INT stuck-bottom). */
+  padding-bottom: 20vh;
 }
 
 .solution-card {
@@ -391,14 +391,9 @@ body {
      and prior card content can't bleed through. Clamp the per-layer impact
      so deeply stacked cards remain visible (don't fade to black). */
   --d: var(--depth, 0);
-  /* Per-depth lift is intentionally subtle (-3px) so prior cards stay
-     visibly stacked. The outro provides the dramatic uniform lift. */
-  transform:
-    translateY(calc(var(--d) * -3px + var(--outro-y, 0px)))
-    scale(max(0.84, calc(1 - var(--d) * 0.018)));
-  transform-origin: 50% 0;
-  /* JS updates --depth every frame, so just a tiny smoothing transition. */
-  transition: transform 0.12s linear, filter 0.12s linear;
+  /* Transform property entirely removed — even an identity transform can
+     break position:sticky in Chrome. Visual recede is driven by filter only. */
+  transition: filter 0.12s linear;
   filter:
     brightness(max(0.55, calc(1 - var(--d) * 0.075)))
     saturate(max(0.5, calc(1 - var(--d) * 0.08)));
