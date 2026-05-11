@@ -68,9 +68,10 @@ export function SolutionDepthEffect() {
         }
         translateY += outroY;
 
-        const brightness = Math.max(0.55, 1 - depth * 0.075);
-        const saturate = Math.max(0.5, 1 - depth * 0.08);
-        card.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+        const scale = Math.max(0.84, 1 - depth * 0.022);
+        const brightness = Math.max(0.5, 1 - depth * 0.085);
+        const saturate = Math.max(0.45, 1 - depth * 0.09);
+        card.style.transform = `translateY(${translateY.toFixed(1)}px) scale(${scale.toFixed(3)})`;
         card.style.filter = `brightness(${brightness.toFixed(3)}) saturate(${saturate.toFixed(3)})`;
         card.style.setProperty("--depth", depth.toFixed(3));
       });
