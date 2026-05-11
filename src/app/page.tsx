@@ -321,10 +321,10 @@ export default function HomePage() {
 
       {/* MARQUEE */}
       <div className="relative border-y border-rule overflow-hidden bg-surface-1/50">
-        <div className="flex marquee whitespace-nowrap py-5">
+        <div className="flex marquee whitespace-nowrap py-9">
           {[...Array(3)].flatMap((_, n) =>
             tickerItems.map((item, i) => (
-              <span key={`${n}-${i}`} className="flex items-center gap-3.5 px-9 font-mono text-[0.78rem] uppercase tracking-[0.14em] text-text-2">
+              <span key={`${n}-${i}`} className="flex items-center gap-4 px-12 font-mono text-[1.05rem] uppercase tracking-[0.14em] text-text-2">
                 <span className="text-accent shrink-0 flex items-center">{item.icon}</span>
                 <span>{item.text}</span>
               </span>
