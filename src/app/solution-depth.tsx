@@ -13,9 +13,7 @@ export function SolutionDepthEffect() {
     const OUTRO_SCROLL_PX = 500;   // distance over which the lift completes
     const OUTRO_TRANSLATE = 1100;  // overshoot so cards fully clear viewport
 
-    // Cache each card's natural page-Y at mount. The natural positions don't
-    // shift during scroll, so this is stable. Cards' sticky CSS is unreliable
-    // in this layout — we drive their position manually below.
+    // Cache each card's natural page-Y at mount. Recomputed lazily if needed.
     const pageOffsetTop = (el: HTMLElement | null) => {
       let y = 0;
       let cur: HTMLElement | null = el;
@@ -25,10 +23,10 @@ export function SolutionDepthEffect() {
       }
       return y;
     };
-    const naturalTops = cards.map((c) => pageOffsetTop(c));
     const lastIdx = cards.length - 1;
-    const lastNaturalTop = naturalTops[lastIdx];
+    const lastCard = cards[lastIdx];
     const lastStickyTop = stickyTop(lastIdx);
+    const lastNaturalTop = pageOffsetTop(lastCard);
     const dockedScroll = lastNaturalTop - lastStickyTop;
 
     const update = () => {
@@ -43,30 +41,27 @@ export function SolutionDepthEffect() {
       const outroY = -outro * OUTRO_TRANSLATE;
 
       cards.forEach((card, i) => {
-        // Depth count (cards beyond this one that are docked) — drives filter.
+        // Depth count from following cards' progress toward their sticky tops.
         let depth = 0;
         for (let j = i + 1; j < cards.length; j++) {
-          const naturalInViewport = naturalTops[j] - sy;
-          const targetTop = stickyTop(j);
+          const r = cards[j].getBoundingClientRect();
+          const target = stickyTop(j);
           const progress = Math.max(
             0,
-            Math.min(
-              1,
-              (targetTop + TRANSITION_PX - naturalInViewport) / TRANSITION_PX,
-            ),
+            Math.min(1, (target + TRANSITION_PX - r.top) / TRANSITION_PX),
           );
           depth += progress;
         }
 
-        // Manual sticky: pin at sticky_top if the natural position has scrolled
-        // past it. Plus uniform outro shift on top.
-        const naturalInViewport = naturalTops[i] - sy;
-        const targetTop = stickyTop(i);
-        let translateY = 0;
-        if (naturalInViewport < targetTop) {
-          translateY = targetTop - naturalInViewport;
+        // Cards 0..N-2 use native CSS sticky — only apply outro translate.
+        // The LAST card uses manual sticky (CSS sticky unreliable on it).
+        let translateY = outroY;
+        if (i === lastIdx) {
+          const naturalInViewport = lastNaturalTop - sy;
+          if (naturalInViewport < lastStickyTop) {
+            translateY += lastStickyTop - naturalInViewport;
+          }
         }
-        translateY += outroY;
 
         const scale = Math.max(0.84, 1 - depth * 0.022);
         const brightness = Math.max(0.5, 1 - depth * 0.085);
@@ -77,21 +72,16 @@ export function SolutionDepthEffect() {
       });
     };
 
-    let frame = 0;
-    const onScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        update();
-      });
-    };
+    // Run update SYNCHRONOUSLY on scroll — using rAF caused a 1-frame visual
+    // lag where the card briefly showed at its stale transform position before
+    // catching up, perceived as a small bounce. Sync update eliminates that.
+    const onScroll = () => update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     update();
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 

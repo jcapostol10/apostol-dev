@@ -382,14 +382,14 @@ body {
 }
 
 .solution-card {
-  /* Positioning is driven by SolutionDepthEffect via transforms —
-     CSS position:sticky was unreliable for the last card in this layout. */
-  position: relative;
+  /* Native CSS sticky for cards 0..N-2 — no subpixel rounding issues that
+     a JS-driven translateY would introduce. INT-07 falls back to manual
+     sticky in SolutionDepthEffect (CSS sticky doesn't engage on it). */
+  position: sticky;
+  top: calc(80px + var(--i, 0) * 60px);
   margin-bottom: 55vh;
   border-radius: 28px;
   will-change: transform, filter;
-  /* Scale shrinks around the TOP so JS-driven translateY positions the card
-     top precisely — bottom shrinks back as depth increases. */
   transform-origin: 50% 0;
   transition: filter 0.12s linear;
   /* Depth-driven push-back: --depth (0..N) is set by SolutionDepthEffect.
