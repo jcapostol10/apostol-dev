@@ -382,11 +382,10 @@ body {
 }
 
 .solution-card {
-  /* Native CSS sticky for cards 0..N-2 — no subpixel rounding issues that
-     a JS-driven translateY would introduce. INT-07 falls back to manual
-     sticky in SolutionDepthEffect (CSS sticky doesn't engage on it). */
-  position: sticky;
-  top: calc(80px + var(--i, 0) * 60px);
+  /* Positioning is fully JS-driven via translateY to avoid native sticky's
+     parent-bottom constraint quirks. SolutionDepthEffect pins each card at
+     its sticky_top + applies the uniform outro lift. */
+  position: relative;
   margin-bottom: 55vh;
   border-radius: 28px;
   will-change: transform, filter;

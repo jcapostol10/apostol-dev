@@ -23,10 +23,10 @@ export function SolutionDepthEffect() {
       }
       return y;
     };
+    const naturalTops = cards.map((c) => pageOffsetTop(c));
     const lastIdx = cards.length - 1;
-    const lastCard = cards[lastIdx];
+    const lastNaturalTop = naturalTops[lastIdx];
     const lastStickyTop = stickyTop(lastIdx);
-    const lastNaturalTop = pageOffsetTop(lastCard);
     const dockedScroll = lastNaturalTop - lastStickyTop;
 
     const update = () => {
@@ -41,26 +41,27 @@ export function SolutionDepthEffect() {
       const outroY = -outro * OUTRO_TRANSLATE;
 
       cards.forEach((card, i) => {
-        // Depth count from following cards' progress toward their sticky tops.
+        // Depth from following cards' progress past their sticky_tops.
         let depth = 0;
+        const myTarget = stickyTop(i);
         for (let j = i + 1; j < cards.length; j++) {
-          const r = cards[j].getBoundingClientRect();
+          const naturalIV = naturalTops[j] - sy;
           const target = stickyTop(j);
           const progress = Math.max(
             0,
-            Math.min(1, (target + TRANSITION_PX - r.top) / TRANSITION_PX),
+            Math.min(1, (target + TRANSITION_PX - naturalIV) / TRANSITION_PX),
           );
           depth += progress;
         }
 
-        // Cards 0..N-2 use native CSS sticky — only apply outro translate.
-        // The LAST card uses manual sticky (CSS sticky unreliable on it).
+        // Manual sticky for EVERY card — native CSS sticky's parent-bottom
+        // constraint was kicking in too aggressively and pushing rear cards
+        // up out of formation. JS pin keeps every card at its sticky_top
+        // until the outro lifts them all together.
+        const naturalIV = naturalTops[i] - sy;
         let translateY = outroY;
-        if (i === lastIdx) {
-          const naturalInViewport = lastNaturalTop - sy;
-          if (naturalInViewport < lastStickyTop) {
-            translateY += lastStickyTop - naturalInViewport;
-          }
+        if (naturalIV < myTarget) {
+          translateY += myTarget - naturalIV;
         }
 
         const scale = Math.max(0.84, 1 - depth * 0.022);
