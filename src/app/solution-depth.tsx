@@ -43,7 +43,6 @@ export function SolutionDepthEffect() {
       cards.forEach((card, i) => {
         // Depth from following cards' progress past their sticky_tops.
         let depth = 0;
-        const myTarget = stickyTop(i);
         for (let j = i + 1; j < cards.length; j++) {
           const naturalIV = naturalTops[j] - sy;
           const target = stickyTop(j);
@@ -54,15 +53,10 @@ export function SolutionDepthEffect() {
           depth += progress;
         }
 
-        // Manual sticky for EVERY card — native CSS sticky's parent-bottom
-        // constraint was kicking in too aggressively and pushing rear cards
-        // up out of formation. JS pin keeps every card at its sticky_top
-        // until the outro lifts them all together.
-        const naturalIV = naturalTops[i] - sy;
-        let translateY = outroY;
-        if (naturalIV < myTarget) {
-          translateY += myTarget - naturalIV;
-        }
+        // Docking handled natively by CSS sticky — no per-frame JS lag.
+        // JS only adds the uniform outro lift; transform composes with
+        // sticky positioning without conflict.
+        const translateY = outroY;
 
         const scale = Math.max(0.84, 1 - depth * 0.022);
         const brightness = Math.max(0.5, 1 - depth * 0.085);

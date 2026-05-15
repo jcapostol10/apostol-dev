@@ -390,6 +390,11 @@ export default function HomePage() {
               </div>
             </article>
           ))}
+          {/* Spacer keeps the sticky range alive through the outro lift —
+              CSS sticky clamps to the containing block's CONTENT bottom,
+              not its padding box, so padding-bottom on .solution-stack
+              alone doesn't extend the range. */}
+          <div aria-hidden className="solution-stack-spacer" />
         </div>
       </section>
 

@@ -376,16 +376,23 @@ body {
 
 .solution-stack {
   position: relative;
-  /* Enough room below the last card so the outro lift completes BEFORE
-     INT-07 would naturally unstick (parent's bottom < INT stuck-bottom). */
-  padding-bottom: 20vh;
+}
+
+/* In-flow content spacer at the end of .solution-stack. CSS sticky clamps to
+   the CONTENT bottom of the containing block (not padding), so we need a real
+   in-flow child to extend the range past INT-07's natural bottom — otherwise
+   rear cards visually collapse on top of INT as soon as scroll passes dock. */
+.solution-stack-spacer {
+  height: 90vh;
+  pointer-events: none;
 }
 
 .solution-card {
-  /* Positioning is fully JS-driven via translateY to avoid native sticky's
-     parent-bottom constraint quirks. SolutionDepthEffect pins each card at
-     its sticky_top + applies the uniform outro lift. */
-  position: relative;
+  /* Native CSS sticky for docking — avoids per-frame JS lag (visible as
+     bouncing). Outro lift + depth recede are still applied via JS transform,
+     which composes with sticky positioning without conflict. */
+  position: sticky;
+  top: calc(80px + var(--i, 0) * 60px);
   margin-bottom: 55vh;
   border-radius: 28px;
   will-change: transform, filter;
