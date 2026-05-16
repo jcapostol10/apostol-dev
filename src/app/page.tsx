@@ -399,10 +399,12 @@ export default function HomePage() {
       </section>
 
       {/* BIO — git log style */}
-      {/* BIO sits exactly one viewport below the dock line on any screen
-          height. 1003px = INT-07's sticky_top (440) + card height (563),
-          fixed in px since cards don't scale with viewport. 15vh adjusts
-          for the in-flow card margins that DO scale with vh. */}
+      {/* BIO sits exactly one viewport below the dock line on any height.
+          calc(-1003px - 15vh): the 1003px piece = sticky_top (440) + card
+          height (563), both in px; the 15vh piece adjusts for the in-flow
+          card margins. BIO never peeks above viewport during dock. As
+          cards lift 1:1 with scroll, BIO enters from below at the same
+          pace — everything on the page moves up together. */}
       <section id="bio" className="relative" style={{ marginTop: "calc(-1003px - 15vh)" }}>
         <div className="max-w-[1240px] mx-auto px-6 pt-8 pb-24">
           <SectionHeader id="BIO-02" eyebrow="The author" title={<>18 years building tech for global enterprises.</>} />

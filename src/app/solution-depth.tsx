@@ -9,9 +9,7 @@ export function SolutionDepthEffect() {
     const stickyTop = (i: number) => 80 + i * 60;
 
     const TRANSITION_PX = 280;
-    const OUTRO_LINGER_PX = 100;   // brief pause to confirm dock before lift
-    const OUTRO_SCROLL_PX = 500;   // distance over which the lift completes
-    const OUTRO_TRANSLATE = 1100;  // overshoot so cards fully clear viewport
+    const OUTRO_MAX_LIFT = 1100;   // cap on translate so transform values stay sane after cards exit
 
     // Cache each card's natural page-Y at mount. Recomputed lazily if needed.
     const pageOffsetTop = (el: HTMLElement | null) => {
@@ -32,13 +30,11 @@ export function SolutionDepthEffect() {
     const update = () => {
       const sy = window.scrollY;
 
-      // Outro starts after the last card docks (with brief linger).
+      // After dock, cards lift 1:1 with scroll — same pace as the rest of
+      // the page so everything moves up together. z-index on .solution-stack
+      // keeps cards above BIO-02 during the brief on-screen overlap.
       const distPastDock = sy - dockedScroll;
-      const outro = Math.max(
-        0,
-        Math.min(1, (distPastDock - OUTRO_LINGER_PX) / OUTRO_SCROLL_PX),
-      );
-      const outroY = -outro * OUTRO_TRANSLATE;
+      const outroY = -Math.max(0, Math.min(OUTRO_MAX_LIFT, distPastDock));
 
       cards.forEach((card, i) => {
         // Depth from following cards' progress past their sticky_tops.
