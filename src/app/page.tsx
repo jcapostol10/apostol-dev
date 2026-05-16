@@ -399,7 +399,11 @@ export default function HomePage() {
       </section>
 
       {/* BIO — git log style */}
-      <section id="bio" className="relative -mt-[115vh]">
+      {/* BIO sits exactly one viewport below the dock line on any screen
+          height. 1003px = INT-07's sticky_top (440) + card height (563),
+          fixed in px since cards don't scale with viewport. 15vh adjusts
+          for the in-flow card margins that DO scale with vh. */}
+      <section id="bio" className="relative" style={{ marginTop: "calc(-1003px - 15vh)" }}>
         <div className="max-w-[1240px] mx-auto px-6 pt-8 pb-24">
           <SectionHeader id="BIO-02" eyebrow="The author" title={<>18 years building tech for global enterprises.</>} />
 
