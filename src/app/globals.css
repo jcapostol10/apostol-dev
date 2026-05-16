@@ -383,7 +383,10 @@ body {
    in-flow child to extend the range past INT-07's natural bottom — otherwise
    rear cards visually collapse on top of INT as soon as scroll passes dock. */
 .solution-stack-spacer {
-  height: 90vh;
+  /* Just enough in-flow content for CSS sticky to hold all 7 cards stuck
+     through the JS outro lift (~600px past dock). Any taller creates a
+     visible empty band before BIO-02. */
+  height: 60vh;
   pointer-events: none;
 }
 

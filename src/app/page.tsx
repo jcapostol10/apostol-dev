@@ -399,7 +399,7 @@ export default function HomePage() {
       </section>
 
       {/* BIO — git log style */}
-      <section id="bio" className="relative -mt-[40vh]">
+      <section id="bio" className="relative -mt-[115vh]">
         <div className="max-w-[1240px] mx-auto px-6 pt-8 pb-24">
           <SectionHeader id="BIO-02" eyebrow="The author" title={<>18 years building tech for global enterprises.</>} />
 
