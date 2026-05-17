@@ -390,29 +390,34 @@ body {
   pointer-events: none;
 }
 
+@keyframes solution-outro-lift {
+  to {
+    translate: 0 -1100px;
+  }
+}
+
 .solution-card {
   /* Native CSS sticky for docking — avoids per-frame JS lag (visible as
-     bouncing). Outro lift + depth recede are still applied via JS transform,
-     which composes with sticky positioning without conflict. */
+     bouncing). Outro lift now runs as a scroll-driven CSS animation on
+     the compositor thread (no JS), so cards stay perfectly synced with
+     the natural scroll of the rest of the page. Depth recede (scale +
+     filter) is still set by JS — only matters during pile-up when each
+     card is approaching dock. */
   position: sticky;
   top: calc(80px + var(--i, 0) * 60px);
   margin-bottom: 55vh;
   border-radius: 28px;
-  will-change: transform, filter;
+  will-change: translate, scale, filter;
   transform-origin: 50% 0;
   transition: filter 0.12s linear;
-  /* Depth-driven push-back: --depth (0..N) is set by SolutionDepthEffect.
-     Use scale + filter only — never opacity — so cards stay fully opaque
-     and prior card content can't bleed through. Clamp the per-layer impact
-     so deeply stacked cards remain visible (don't fade to black). */
-  --d: var(--depth, 0);
-  /* Transform property entirely removed — even an identity transform can
-     break position:sticky in Chrome. Visual recede is driven by filter only. */
-  transition: filter 0.12s linear;
-  filter:
-    brightness(max(0.55, calc(1 - var(--d) * 0.075)))
-    saturate(max(0.5, calc(1 - var(--d) * 0.08)));
-  /* Opaque so prior cards don't bleed through; warm-bg to differentiate from page bg */
+  /* translate + scale as individual transform properties so the keyframe
+     animation drives only translate and the JS-set scale composes with it. */
+  scale: var(--card-scale, 1);
+  animation: solution-outro-lift linear forwards;
+  animation-timeline: scroll(root block);
+  animation-range: var(--outro-start, 999999px) var(--outro-end, 999999px);
+  /* Depth recede (filter) is set inline by SolutionDepthEffect — composes
+     with the CSS-animated translate above. */
   background:
     linear-gradient(180deg, #221814 0%, #110b08 100%);
   border: 1px solid rgba(255, 138, 77, 0.18);
@@ -423,7 +428,6 @@ body {
     0 80px 120px -60px rgba(255, 106, 61, 0.18);
   overflow: hidden;
   isolation: isolate;
-  transform-origin: 50% 0;
 }
 
 /* Title-strip stays visible as the next card stacks above. */
