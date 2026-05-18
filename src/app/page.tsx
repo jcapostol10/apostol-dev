@@ -412,10 +412,10 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-12 gap-10 mt-12">
             <div className="lg:col-span-5 space-y-6 reveal">
               <p className="text-lg text-text-2 leading-relaxed">
-                I&apos;m Jose Carlo Apostol. I&apos;ve led SRE and DevOps teams at Nuskin, built fintech blockchain apps at Swapoolabs, supported global risk-management systems at Macquarie in Sydney, and shipped airline-billing software at Navitaire-Accenture in Minneapolis.
+                I&apos;m Jose Carlo Apostol. I&apos;ve led SRE and DevOps teams, operated fintech blockchain apps, supported global risk-management systems, and coded and shipped airline accounting systems software.
               </p>
               <p className="text-lg text-text-2 leading-relaxed">
-                Now I&apos;m bringing that same engineering rigor — observability, CI/CD, cloud architecture, security — to Filipino SMEs at small-business prices.
+                Now I&apos;m bringing the same engineering rigor — observability, CI/CD, cloud architecture, security and programming — to Filipino SMEs at small-business prices.
               </p>
               <div className="pt-2">
                 <div className="eyebrow mb-3">Stack &amp; certifications</div>
