@@ -221,12 +221,11 @@ const tickerItems = [
 
 const stack = [
   "AWS Solutions Architect",
-  "Kubernetes (CKA)",
-  "Datadog · Splunk",
-  "ITIL v3",
+  "Kubernetes",
+  "Python",
+  "React",
+  "Datadog-Splunk-OpenTelemetry",
   "Lean Six Sigma",
-  "ECE Licensed",
-  "UST Engineering",
 ];
 
 export default function HomePage() {
