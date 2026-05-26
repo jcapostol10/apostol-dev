@@ -133,7 +133,7 @@ const services: Service[] = [
 ];
 
 const careerLog = [
-  { hash: "a4f9c1e", date: "2023-01", role: "Observability & SRE Manager", at: "", note: "AWS, React, JS, Kubernetes, Observability" },
+  { hash: "a4f9c1e", date: "2023-01", role: "Observability & SRE Manager", at: "", note: "E-commerce and MLM on AWS, React, JS, Kubernetes, Observability" },
   { hash: "8b2d731", date: "2018-05", role: "IT Operations Manager", at: "", note: "Fintech / blockchain on AWS. ISO 27001-aligned." },
   { hash: "d31e08a", date: "2017-06", role: "RMG Operations Lead", at: "", note: "Risk applications · APAC, EMEA, Americas." },
   { hash: "6c5a92f", date: "2013-02", role: "Senior IT Operations Analyst", at: "Sydney", note: "Off-shore. Market & credit risk." },
