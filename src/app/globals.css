@@ -6,7 +6,11 @@
   --color-surface-2: #16161499;
   --color-text-1: #ededeb;
   --color-text-2: #a8a6a0;
-  --color-text-3: #6e6c66;
+  /* Lightened from #6e6c66 (3.6–3.8:1) to clear WCAG AA 4.5:1 on every
+     surface this token actually paints on — page bg, surface-1, surface-2
+     composite, and the warm solution-card gradient (~4.65:1 worst case).
+     Preserves the original R=G, B-6 warm-gray pattern. */
+  --color-text-3: #86847e;
   --color-rule: rgba(237, 237, 235, 0.07);
   --color-rule-strong: rgba(237, 237, 235, 0.14);
   --color-accent: #ff6a3d;
@@ -236,6 +240,27 @@ body {
 .btn-ghost:hover {
   border-color: var(--color-text-2);
   background: rgba(255, 255, 255, 0.03);
+}
+/* Outline = secondary CTA. Heavier than ghost: a visible accent-tinted
+   border and a soft inner glow so it reads as a deliberate sibling to
+   .btn-primary rather than a low-emphasis ghost. */
+.btn-outline {
+  border: 1px solid var(--color-accent);
+  color: var(--color-text-1);
+  background: rgba(255, 106, 61, 0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 1px 0 rgba(0, 0, 0, 0.3),
+    0 10px 28px -16px rgba(255, 106, 61, 0.35);
+}
+.btn-outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(255, 106, 61, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 1px 0 rgba(0, 0, 0, 0.3),
+    0 14px 36px -14px rgba(255, 106, 61, 0.5);
 }
 
 /* ─── Sunset wash (kept for hero only) ──────────────────────── */
