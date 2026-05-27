@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { LocalBusinessJsonLd, ServiceJsonLd } from "./structured-data";
 
 const display = Inter({
   variable: "--font-display",
@@ -51,7 +52,11 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${sans.variable} ${mono.variable} h-full`}
     >
-      <body className="paper-grain min-h-full flex flex-col">{children}</body>
+      <body className="paper-grain min-h-full flex flex-col">
+        <LocalBusinessJsonLd />
+        <ServiceJsonLd />
+        {children}
+      </body>
     </html>
   );
 }

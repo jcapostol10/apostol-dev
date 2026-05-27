@@ -1,5 +1,7 @@
 import { ContactForm } from "./contact-form";
 import { SolutionDepthEffect } from "./solution-depth";
+import { caseStudies, faqs, testimonials } from "./site-data";
+import { FaqJsonLd } from "./structured-data";
 
 type Service = {
   code: string;
@@ -148,15 +150,6 @@ const processSteps = [
   { n: "04", title: "Launch", body: "Pay only when you're happy. Site goes live on your domain. I keep it running." },
 ];
 
-const faqs = [
-  { q: "What if I don't like the website you build?", a: "You owe me nothing. That's the whole point — I take the risk so you don't have to. Two free revision rounds are included; if it's still not right, we walk away as friends." },
-  { q: "How long until my website is live?", a: "Most landing pages and small-business sites are live for review within 5–7 business days from the discovery call. Mobile apps and complex e-commerce take 2–4 weeks." },
-  { q: "Do I own the website?", a: "The domain and content are 100% yours. Hosting and the codebase are managed by me as part of the subscription — that's how I keep monthly costs low and reliability high." },
-  { q: "Can you build mobile apps too?", a: "Yes. iOS and Android apps are included in the Growth Partner plan. I build cross-platform with React Native so updates are fast and your costs stay low." },
-  { q: "What kind of AI features can you add?", a: "Customer chatbots that book appointments, AI search across your products, automated content drafting, smart lead-qualification forms, image generation for marketing, and more. We'll scope what makes sense for your business." },
-  { q: "Can I cancel?", a: "Anytime, no questions asked. I'll export your content and help you transition. No lock-in contracts." },
-];
-
 const iconProps = {
   width: 22,
   height: 22,
@@ -244,6 +237,7 @@ export default function HomePage() {
             {[
               ["Practice", "#services"],
               ["Bio", "#bio"],
+              ["Proof", "#proof"],
               ["Pricing", "#pricing"],
               ["Process", "#process"],
               ["FAQ", "#faq"],
@@ -451,6 +445,99 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* PROOF — testimonials + selected projects.
+          When real testimonials are wired up, emit Review + AggregateRating
+          JSON-LD from structured-data.tsx and import the renderer here. */}
+      <section id="proof" className="relative">
+        <div className="max-w-[1240px] mx-auto px-6 py-24">
+          <SectionHeader
+            id="PRF-07"
+            eyebrow="Proof"
+            title={<>Receipts, <span className="text-text-3">not promises.</span></>}
+            subtitle="Selected client work and what they said. Real screenshots; real numbers."
+          />
+
+          {testimonials.length > 0 && (
+            <div className="grid md:grid-cols-2 gap-5 mt-12">
+              {testimonials.map((t, i) => (
+                <figure
+                  key={i}
+                  className="surface p-7 md:p-8 reveal"
+                  style={{ animationDelay: `${i * 60}ms` }}
+                >
+                  {t.placeholder && (
+                    <span className="tag text-accent mb-5 inline-block">
+                      [ PLACEHOLDER ]
+                    </span>
+                  )}
+                  <blockquote className="text-text-1 text-lg md:text-xl leading-snug">
+                    <span aria-hidden className="text-accent font-mono mr-1">“</span>
+                    {t.quote}
+                    <span aria-hidden className="text-accent font-mono ml-1">”</span>
+                  </blockquote>
+                  <figcaption className="mt-6 pt-5 border-t border-rule text-sm">
+                    <cite className="not-italic font-medium text-text-1 block">
+                      {t.authorName}
+                    </cite>
+                    <span className="text-text-3 font-mono text-xs uppercase tracking-wider">
+                      {t.authorRole}
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {caseStudies.length > 0 && (
+            <div className="mt-12">
+              <h3 className="eyebrow mb-5 flex items-center gap-3">
+                <span className="text-accent">[ CASES ]</span>
+                <span>Selected projects</span>
+              </h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-rule rounded-xl overflow-hidden border border-rule">
+                {caseStudies.map((c, i) => {
+                  const Wrapper: React.ElementType = c.href ? "a" : "div";
+                  const wrapperProps = c.href
+                    ? { href: c.href, target: "_blank", rel: "noreferrer" }
+                    : {};
+                  return (
+                    <Wrapper
+                      key={i}
+                      {...wrapperProps}
+                      className="bg-bg p-7 block group focus-visible:outline-none"
+                    >
+                      {c.placeholder && (
+                        <span className="tag text-accent mb-4 inline-block">
+                          [ PLACEHOLDER ]
+                        </span>
+                      )}
+                      <h4 className="font-semibold text-lg mb-2 text-text-1 group-hover:text-accent transition-colors">
+                        {c.title}
+                      </h4>
+                      <p className="text-text-2 text-sm leading-relaxed mb-5">
+                        {c.result}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {c.tags.map((tag) => (
+                          <span key={tag} className="chip">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      {c.href && (
+                        <span className="mt-5 inline-flex items-center gap-1 text-sm text-accent">
+                          View case <span aria-hidden>→</span>
+                        </span>
+                      )}
+                    </Wrapper>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* PROMISE — single moment */}
       <section className="relative">
         <div className="max-w-[1240px] mx-auto px-6 py-24">
@@ -496,7 +583,7 @@ export default function HomePage() {
                 ["Build first, pay later", "✓"],
               ]}
               cta="Get started"
-              ctaStyle="ghost"
+              ctaStyle="outline"
             />
             <PlanCard
               tier="Retainer & Support"
@@ -544,6 +631,7 @@ export default function HomePage() {
 
       {/* FAQ */}
       <section id="faq" className="relative">
+        <FaqJsonLd />
         <div className="max-w-3xl mx-auto px-6 py-24">
           <SectionHeader id="FAQ-05" eyebrow="FAQ" title={<>Common <span className="text-text-3">questions.</span></>} center />
 
@@ -917,7 +1005,7 @@ function PlanCard({
   tagline: string;
   specs: [string, string][];
   cta: string;
-  ctaStyle: "primary" | "ghost";
+  ctaStyle: "primary" | "outline" | "ghost";
   feature?: boolean;
 }) {
   return (
@@ -944,7 +1032,7 @@ function PlanCard({
           </div>
         ))}
       </div>
-      <a href="#contact" className={`btn ${ctaStyle === "primary" ? "btn-primary" : "btn-ghost"} w-full`}>
+      <a href="#contact" className={`btn btn-${ctaStyle} w-full`}>
         {cta} <span aria-hidden>→</span>
       </a>
     </article>
